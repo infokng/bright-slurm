@@ -1,0 +1,119 @@
+
+[root@bright88 mxnet]# srun --mpi=pmix_v3 -N 1 --ntasks=16  -w node001 --container-image=192.168.61.4:5000#/cosmoflow-nvidia:0.4 --container-name=cosmoflow-preprocess --container-workdir=/mnt/mxnet --container-mounts=/mnt/lustre:/mnt bash tools/init_datasets.sh  /mnt/Cosmo-Small /mnt/processed 16
+
+
+
+
+
+
+
+
+
+pyxis: imported docker image: 192.168.61.4:5000#/cosmoflow-nvidia:0.4
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+[node001:110631] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110633] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110638] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110636] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110640] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110639] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110632] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110642] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110641] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110634] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110644] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110635] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110643] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110630] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110629] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+[node001:110637] PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 168
+2023-01-11 15:37:23.068623: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.068624: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.070205: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.072718: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.080399: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.085484: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.085311: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.086233: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.086883: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.088807: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.092000: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.094736: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.097027: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.098812: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.220895: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:23.228529: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-11 15:37:32.585366: F tensorflow/core/platform/statusor.cc:33] Attempting to fetch value instead of handling error INTERNAL: failed initializing StreamExecutor for CUDA device ordinal 0: INTERNAL: failed call to cuDevicePrimaryCtxRetain: CUDA_ERROR_OUT_OF_MEMORY: out of memory; total memory reported: 85197979648
+[node001:110642] *** Process received signal ***
+[node001:110642] Signal: Aborted (6)
+[node001:110642] Signal code:  (-6)
+[node001:110642] [ 0] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x46210)[0x155555370210]
+[node001:110642] [ 1] /usr/lib/x86_64-linux-gnu/libc.so.6(gsignal+0xcb)[0x15555537018b]
+[node001:110642] [ 2] /usr/lib/x86_64-linux-gnu/libc.so.6(abort+0x12b)[0x15555534f859]
+[node001:110642] [ 3] /usr/local/lib/python3.8/dist-packages/tensorflow/python/_pywrap_tensorflow_internal.so(+0x10a461a4)[0x1555331541a4]
+[node001:110642] [ 4] /usr/local/lib/python3.8/dist-packages/tensorflow/python/_pywrap_tensorflow_internal.so(_ZN10tensorflow17internal_statusor6Helper5CrashERKNS_6StatusE+0x4e)[0x1555331477ce]
+[node001:110642] [ 5] /usr/local/lib/python3.8/dist-packages/tensorflow/python/../libtensorflow_framework.so.2(+0x9b3f0b)[0x155521133f0b]
+[node001:110642] [ 6] /usr/local/lib/python3.8/dist-packages/tensorflow/python/../libtensorflow_framework.so.2(_ZN10tensorflow20BaseGPUDeviceFactory13CreateDevicesERKNS_14SessionOptionsERKSsPSt6vectorISt10unique_ptrINS_6DeviceESt14default_deleteIS8_EESaISB_EE+0x77b)[0x15552113a95b]
+[node001:110642] [ 7] /usr/local/lib/python3.8/dist-packages/tensorflow/python/../libtensorflow_framework.so.2(_ZN10tensorflow13DeviceFactory10AddDevicesERKNS_14SessionOptionsERKSsPSt6vectorISt10unique_ptrINS_6DeviceESt14default_deleteIS8_EESaISB_EE+0xad)[0x155520ea5bfd]
+[node001:110642] [ 8] /usr/local/lib/python3.8/dist-packages/tensorflow/python/_pywrap_tensorflow_internal.so(TFE_NewContext+0x70)[0x155526cb6050]
+[node001:110642] [ 9] /usr/local/lib/python3.8/dist-packages/tensorflow/python/_pywrap_tfe.so(+0x598f5)[0x15551fb948f5]
+[node001:110642] [10] /usr/local/lib/python3.8/dist-packages/tensorflow/python/_pywrap_tfe.so(+0x55141)[0x15551fb90141]
+[node001:110642] [11] python3(PyCFunction_Call+0x59)[0x5f2cc9]
+[node001:110642] [12] python3(_PyObject_MakeTpCall+0x150)[0x5f3010]
+[node001:110642] [13] python3(_PyEval_EvalFrameDefault+0x5d43)[0x5700f3]
+[node001:110642] [14] python3(_PyFunction_Vectorcall+0x1b6)[0x5f5956]
+[node001:110642] [15] python3(_PyEval_EvalFrameDefault+0x906)[0x56acb6]
+[node001:110642] [16] python3(_PyEval_EvalCodeWithName+0x26a)[0x568d9a]
+[node001:110642] [17] python3(_PyFunction_Vectorcall+0x393)[0x5f5b33]
+[node001:110642] [18] python3(_PyEval_EvalFrameDefault+0x72f)[0x56aadf]
+[node001:110642] [19] python3(_PyFunction_Vectorcall+0x1b6)[0x5f5956]
+[node001:110642] [20] python3(_PyEval_EvalFrameDefault+0x72f)[0x56aadf]
+[node001:110642] [21] python3(_PyEval_EvalCodeWithName+0x26a)[0x568d9a]
+[node001:110642] [22] python3(_PyFunction_Vectorcall+0x393)[0x5f5b33]
+[node001:110642] [23] python3(_PyEval_EvalFrameDefault+0x18eb)[0x56bc9b]
+[node001:110642] [24] python3(_PyEval_EvalCodeWithName+0x26a)[0x568d9a]
+[node001:110642] [25] python3(_PyFunction_Vectorcall+0x393)[0x5f5b33]
+[node001:110642] [26] python3(_PyEval_EvalFrameDefault+0x18eb)[0x56bc9b]
+[node001:110642] [27] python3(_PyEval_EvalCodeWithName+0x26a)[0x568d9a]
+[node001:110642] [28] python3(_PyFunction_Vectorcall+0x393)[0x5f5b33]
+[node001:110642] [29] python3(_PyEval_EvalFrameDefault+0x18eb)[0x56bc9b]
+[node001:110642] *** End of error message ***
+tools/init_datasets.sh: line 7: 110642 Aborted                 (core dumped) python3 -m tools.convert_tfrecord_to_numpy -i ${DATA_SRC_DIR}/train -o ${DATA_DST_DIR}/train -c GZIP -p ${NUM_PROC}
+Train set done
+slurmstepd: error:  mpi/pmix_v3: _errhandler: node001 [0]: pmixp_client_v2.c:211: Error handler invoked: status = -25, source = [slurm.pmix.259.0:7]
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 259.0 ON node001 CANCELLED AT 2023-01-11T15:37:34 ***
+slurmstepd: error:  mpi/pmix_v3: _errhandler: node001 [0]: pmixp_client_v2.c:211: Error handler invoked: status = -25, source = [slurm.pmix.259.0:9]
+slurmstepd: error:  mpi/pmix_v3: _errhandler: node001 [0]: pmixp_client_v2.c:211: Error handler invoked: status = -25, source = [slurm.pmix.259.0:10]
+srun: error: node001: tasks 0-6,8-15: Killed
