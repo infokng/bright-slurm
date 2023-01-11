@@ -1,3 +1,22 @@
+slurmstepd: error: pyxis: container start failed with error code: 1
+slurmstepd: error: pyxis: printing enroot log file:
+slurmstepd: error: pyxis:     /usr/bin/enroot: line 44: HOME: unbound variable
+slurmstepd: error: pyxis:     [ERROR] Command not found: nvidia-container-cli, see https://github.com/NVIDIA/libnvidia-container
+slurmstepd: error: pyxis:     [ERROR] /etc/enroot/hooks.d/98-nvidia.sh exited with return code 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [root@bright88 mxnet]# srun --mpi=pmix_v3 -N 1 --ntasks=16  -w node001 --container-image=192.168.61.4:5000#/cosmoflow-nvidia:0.4 --container-name=cosmoflow-preprocess --container-workdir=/mnt/mxnet --container-mounts=/mnt/lustre:/mnt bash tools/init_datasets.sh  /mnt/Cosmo-Small /mnt/processed 16
 
