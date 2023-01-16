@@ -1,3 +1,33 @@
+
+from kubernetes import client, config
+
+class KubernetesWorker:
+    def __init__(self):
+        # loading kubeconfig
+        config.load_kube_config()
+        # create an instance of the Kubernetes CoreV1Api
+        self.api_instance = client.CoreV1Api()
+
+    def show_nodes(self):
+        nodes = self.api_instance.list_node()
+        for node in nodes.items:
+            print(node.metadata.name)
+
+# Usage
+worker = KubernetesWorker()
+worker.show_nodes()
+
+
+
+
+
+
+
+
+
+
+
+
 slurmstepd: error: pyxis: container start failed with error code: 1
 slurmstepd: error: pyxis: printing enroot log file:
 slurmstepd: error: pyxis:     /usr/bin/enroot: line 44: HOME: unbound variable
