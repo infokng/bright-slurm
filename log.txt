@@ -1,4 +1,9 @@
 
+
+error parsing load.yaml: error converting YAML to JSON: yaml: line 20: did not find expected key
+
+
+
 from kubernetes import client, config
 
 class KubernetesWorker:
