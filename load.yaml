@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mlperf-test-node001-pvc
+  namespace: mlperf-test-node001
+  labels:
+    devcloud: autorun
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Gi
+  volumeName: mlperf-test-node001-pv
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mlperf
+  namespace: mlperf-test-node001
+  labels:
+    devcloud: autorun
+    app: mlperf
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node001
+  containers:
+  - name: mlperf
+    image: 192.168.61.4:5000/nvidia_rn50_mx:0.2 bash
+    imagePullPolicy: IfNotPresent
+    securityContext:
+      privileged: true
+    command: ["/bin/sh", "-c"]
+    args:
+        - "./scripts/prepare_imagenet.sh /data/imagenet/train-val-recordio-passthrough/tiny-imagenet-200 /data/imagenet/train-val-recordio-passthrough/tiny-imagenet-200 40"
+    - name: mlperf-volume
+      mountPath: /data/imagenet/train-val-recordio-passthrough
+    - mountPath: /tmp
+      name: mlperf-log
+  volumes:
+  - name: mlperf-volume
+    persistentVolumeClaim:
+      claimName: mlperf-test-node001-pvc
+  - name: mlperf-log
+    hostPath:
+        path: "/mnt/"
+  restartPolicy: Never
+  imagePullSecrets:
+  - name: regcred
