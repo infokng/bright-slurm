@@ -1,5 +1,38 @@
 
 
+Volumes:
+  mlperf-volume:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  mlperf-test-node001-pvc
+    ReadOnly:   false
+  mlperf-log:
+    Type:          HostPath (bare host directory volume)
+    Path:          /mnt/
+    HostPathType:
+  host-folder:
+    Type:          HostPath (bare host directory volume)
+    Path:          /tmp/
+    HostPathType:
+  kube-api-access-hmb84:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/hostname=node001
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age               From               Message
+  ----     ------            ----              ----               -------
+  Warning  FailedScheduling  18s               default-scheduler  0/7 nodes are available: 7 pod has unbound immediate PersistentVolumeClaims.
+  Normal   Scheduled         17s               default-scheduler  Successfully assigned mlperf-test-node001/mlperf to node001
+  Warning  FailedMount       1s (x6 over 17s)  kubelet            MountVolume.MountDevice failed for volume "pvc-fd4bde75-15bd-4962-b2c7-8d2232d0bfb2" : rpc error: code = Internal desc = {"code":32,"stdout":"","stderr":"/usr/local/bin/mount: illegal option -- o\nmount.nfs: requested NFS version or transport protocol is not supported\n","timeout":false}
+
+
+
+
 error parsing load.yaml: error converting YAML to JSON: yaml: line 20: did not find expected key
 
 
