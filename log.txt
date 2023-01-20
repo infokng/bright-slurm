@@ -1,4 +1,7 @@
+=====
+mount -t lustre 192.168.61.80@tcp:/lustre /mnt/lustre
 ======
+
 
 import argparse
 import subprocess
