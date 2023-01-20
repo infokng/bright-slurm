@@ -1,4 +1,61 @@
+=====
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/provisioned-by: org.democratic-csi.nfs-client
+  creationTimestamp: "2023-01-20T02:25:38Z"
+  finalizers:
+  - kubernetes.io/pv-protection
+  name: pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26
+  resourceVersion: "19593411"
+  uid: d87f17ae-88bb-4a2d-8666-2fdc96adb1f6
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 200Gi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: kf-claim-nfs-2
+    namespace: default
+    resourceVersion: "19593405"
+    uid: 25f0d0be-41de-4a4d-ba21-e39088b86d26
+  csi:
+    controllerExpandSecretRef:
+      name: controller-expand-secret-nfs-client-zfs-nfs-democratic-csi
+      namespace: democratic-csi
+    controllerPublishSecretRef:
+      name: controller-publish-secret-nfs-client-zfs-nfs-democratic-csi
+      namespace: democratic-csi
+    driver: org.democratic-csi.nfs-client
+    fsType: nfs
+    nodePublishSecretRef:
+      name: node-publish-secret-nfs-client-zfs-nfs-democratic-csi
+      namespace: democratic-csi
+    nodeStageSecretRef:
+      name: node-stage-secret-nfs-client-zfs-nfs-democratic-csi
+      namespace: democratic-csi
+    volumeAttributes:
+      node_attach_driver: nfs
+      provisioner_driver: nfs-client
+      server: 192.168.61.89
+      share: /mnt/lustre/v/pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26
+      storage.kubernetes.io/csiProvisionerIdentity: 1673590679347-8081-org.democratic-csi.nfs-client
+    volumeHandle: pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26
+  mountOptions:
+  - noatime
+  - nfsvers=3
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: nfs-client
+  volumeMode: Filesystem
+status:
+  phase: Bound
 
+
+
+===============================================
 apiVersion: v1
 kind: Pod
 metadata:
