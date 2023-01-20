@@ -1,4 +1,103 @@
+======
 
+import argparse
+import subprocess
+import os, fnmatch, shutil
+import re
+import parser
+from random import seed
+from random import randint
+from pathlib import Path
+from datetime import datetime
+from paramiko import client
+from distutils.dir_util import copy_tree
+from scp import SCPClient, SCPException
+import json
+from time import sleep
+from lib.remote import *
+import lib.application as app
+import apps.imagenet.imagenet as img
+
+# silent =" 2>/dev/null || true"
+
+# PROJ_DIR = os.path.realpath(os.path.join(__file__, os.pardir))
+# APPS_CONF_DIR = os.path.join(PROJ_DIR, "apps")
+
+
+# seed()
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+
+    def csv_str(str1):
+        return str1.split(',')
+    parser.add_argument('-t','--testname',dest='tname',default='test',help='Testname | e.g. mytest')
+    parser.add_argument('-n','--num',dest='num',default=1,type=int,help='Number of tenants | e.g. 2')
+    # parser.add_argument('-m','--master',dest='m_id',required=True,type=csv_str,help='Server | e.g. kvm-1,kvm-2')
+    parser.add_argument('-s','--servers',dest='s_id',required=True,type=csv_str,help='Server | e.g. kvm-1,kvm-2')
+    parser.add_argument('-c','--clients',dest='c_id',required=True,type=csv_str,help='Clients | e.g. kvm-1,kvm-2')
+    parser.add_argument('-d','--device',dest='d_id',default='sdb,sdb,sdb,sdb',type=csv_str,help='Storage | e.g. sdb,sdb')
+    parser.add_argument('-mt','--mount',dest='mnt',required=False,type=str,help='Dataset Mountpath | e.g. /mnt/lustre/cosmo')
+    parser.add_argument('-g','--gpu',dest='gpu',required=False,help='No. of GPUs')
+    parser.add_argument('-proc','--procs',dest='procs',required=False,help='No. of processes or tasks')
+    parser.add_argument('-th','--threads',dest='th',required=False,help='Number of threads for Pre-processing')
+    parser.add_argument('-ct','--ctrace',dest='ctrace',action='store_true',help='Run Ctrace if flag enabled')
+    
+    # TODO currently shared account id/password. it needs to change to multiple account and password
+    parser.add_argument('-u','--user',dest='user',default='root',help='DevClous Autorun server account | e.g. root')
+    parser.add_argument('-p','--password',dest='password',default='password',help='DevCloud Autorun server account | e.g. password')
+
+    args = parser.parse_args()
+    return args
+
+
+def main():
+    # Get working directory(absolute)
+    cwd = os.getcwd()
+
+    # Collect arguments
+    args = parse_args()
+    dev = args.d_id
+    node = len(args.c_id)
+    clients = " ".join(args.c_id)
+    gpu = args.gpu
+    procs = args.procs
+    th = args.th
+    master = '192.168.61.88'
+    
+
+    
+    # Initialize conn in servers
+    brokers = [RemoteConn(svr) for svr in args.s_id]
+    #Initialize conn in clients
+    client_conn = [RemoteConn(svr) for svr in args.c_id]
+    # Initialize conn in master
+    master_conn = RemoteConn(master)
+    
+    
+    # Init variables
+    respath = init_test(args.tname, cwd, f'{cwd}/apps/imagenet/yaml')
+    respath_imagenet = mkdir_p(respath,'stage1')
+    print("respath :", respath)
+    yamlpath = os.path.join(respath, 'yaml')
+    ns = f'{args.tname}-imagenet'
+
+    
+    # Imagenet Pre-run setup
+    pre_imagenet_mkdir = img.Imagenet('imagenet', clients, ns, yamlpath, master_conn)
+    pre_imagenet_mkdir.imagenet_load_bm(master_conn)
+    
+    # Start Imagenet Pre-Processing - Stage 1
+    print(f'Loading benchmark.... Load Phase')
+    # load_imagenet = img.Imagenet('imagenet', clients, ns, yamlpath)
+    # load_imagenet.imagenet_load_bm(master_conn)
+    
+
+if __name__=='__main__':
+    main()
+
+
+========
 
 새해 복 많이 받으시고, 부디 건강하시고, 가족 모두 행복한 한해 되시길 기원합니다.
 
