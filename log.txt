@@ -1,4 +1,7 @@
 
+
+새해 복 많이 받으시고, 부디 건강하시고, 가족 모두 행복한 한해 되시길 기원합니다.
+
 =====================
 [root@bright88 democratic-csi]# cat examples/nfs-client.yaml
 # driver only works with 1.16+
