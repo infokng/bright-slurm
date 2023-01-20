@@ -1,4 +1,60 @@
 
+[root@bright88 test-scripts]# kubectl describe pv pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26
+Name:            pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26
+Labels:          <none>
+Annotations:     pv.kubernetes.io/provisioned-by: org.democratic-csi.nfs-client
+Finalizers:      [kubernetes.io/pv-protection]
+StorageClass:    nfs-client
+Status:          Bound
+Claim:           default/kf-claim-nfs-2
+Reclaim Policy:  Delete
+Access Modes:    RWO
+VolumeMode:      Filesystem
+Capacity:        200Gi
+Node Affinity:   <none>
+Message:
+Source:
+    Type:              CSI (a Container Storage Interface (CSI) volume source)
+    Driver:            org.democratic-csi.nfs-client
+    FSType:            nfs
+    VolumeHandle:      pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26
+    ReadOnly:          false
+    VolumeAttributes:      node_attach_driver=nfs
+                           provisioner_driver=nfs-client
+                           server=192.168.61.89
+                           share=/mnt/lustre/v/pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26
+                           storage.kubernetes.io/csiProvisionerIdentity=1673590679347-8081-org.democratic-csi.nfs-client
+Events:                <none>
+[root@bright88 test-scripts]# kubectl  get pvc
+NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+kf-claim-nfs-2   Bound    pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26   200Gi      RWO            nfs-client     7m15s
+[root@bright88 test-scripts]# kubectl describe pvc kf-claim-nfs-2
+Name:          kf-claim-nfs-2
+Namespace:     default
+StorageClass:  nfs-client
+Status:        Bound
+Volume:        pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26
+Labels:        <none>
+Annotations:   pv.kubernetes.io/bind-completed: yes
+               pv.kubernetes.io/bound-by-controller: yes
+               volume.beta.kubernetes.io/storage-class: nfs-client
+               volume.beta.kubernetes.io/storage-provisioner: org.democratic-csi.nfs-client
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      200Gi
+Access Modes:  RWO
+VolumeMode:    Filesystem
+Used By:       mlperf
+Events:
+  Type    Reason                 Age                    From                                                                                                                  Message
+  ----    ------                 ----                   ----                                                                                                                  -------
+  Normal  Provisioning           7m34s                  org.democratic-csi.nfs-client_zfs-nfs-democratic-csi-controller-f7557ff5d-m6wjc_d73e305d-5952-4ae2-9ba3-b9a36a67df4b  External provisioner is provisioning volume for claim "default/kf-claim-nfs-2"
+  Normal  ProvisioningSucceeded  7m34s                  org.democratic-csi.nfs-client_zfs-nfs-democratic-csi-controller-f7557ff5d-m6wjc_d73e305d-5952-4ae2-9ba3-b9a36a67df4b  Successfully provisioned volume pvc-25f0d0be-41de-4a4d-ba21-e39088b86d26
+  Normal  ExternalProvisioning   7m33s (x2 over 7m33s)  persistentvolume-controller                                                                                           waiting for a volume to be created, either by external provisioner "org.democratic-csi.nfs-client" or manually created by system administrator
+
+
+
+
+
 [root@bright88 examples]# kubectl get pods -n democratic-csi
 NAME                                                READY   STATUS    RESTARTS   AGE
 zfs-nfs-democratic-csi-controller-f7557ff5d-m6wjc   4/4     Running   169        7d15h
