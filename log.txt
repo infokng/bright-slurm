@@ -1,4 +1,29 @@
 
+[root@bright88 examples]# kubectl get pods -n democratic-csi
+NAME                                                READY   STATUS    RESTARTS   AGE
+zfs-nfs-democratic-csi-controller-f7557ff5d-m6wjc   4/4     Running   169        7d15h
+zfs-nfs-democratic-csi-node-47vf2                   4/4     Running   0          13d
+zfs-nfs-democratic-csi-node-8b7pp                   4/4     Running   461        13d
+zfs-nfs-democratic-csi-node-bfzpm                   4/4     Running   0          13d
+zfs-nfs-democratic-csi-node-d4pqk                   4/4     Running   0          13d
+
+
+
+
+driver: lustre-client
+instance_id:
+lustre:
+  shareHost: 192.168.61.80
+  shareBasePath: "/mnt/lustre"
+  # shareHost:shareBasePath should be mounted at this location in the controller container
+  controllerBasePath: "/storage"
+  dirPermissionsMode: "0777"
+  dirPermissionsUser: root
+  dirPermissionsGroup: root
+
+
+
+
 
 
 MountVolume.MountDevice failed for volume "pvc-7b5b1f73-d73a-4249-bda2-45524313d69a" : rpc error: code = Internal desc = {"code":32,"stdout":"","stderr":"/usr/local/bin/mount: illegal option -- o\nmount.nfs: requested NFS version or transport protocol is not supported\n","timeout":false}
