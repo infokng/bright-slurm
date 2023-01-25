@@ -1,3 +1,6 @@
+https://docs.google.com/document/d/1Y2irk__m3ZCsDz1NVVhITwj9r8WXUg3jTUVrJxkdNQE/edit#
+
+
 Chat GPT
 
 Additional preprocessing steps, such as tokenization and batching, are important for preparing the data for training a model like ChatGPT. These steps are typically performed using the map and shuffle functions in TensorFlow 2 and PyTorch.
