@@ -1,3 +1,20 @@
+
+run test-photo.py --help
+usage: test-photo.py [-h] [-f FOLDER] [-n NUM_IMAGES]
+
+Process multiple images using Photoshop
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -f FOLDER, --folder FOLDER
+                        Folder path where images are located
+  -n NUM_IMAGES, --num_images NUM_IMAGES
+                        Number of images to process at once
+
+
+
+
+
 https://docs.google.com/document/d/1Y2irk__m3ZCsDz1NVVhITwj9r8WXUg3jTUVrJxkdNQE/edit#
 
 
