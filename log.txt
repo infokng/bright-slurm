@@ -1,4 +1,11 @@
 
+BookCorpus: A large-scale dataset of 11,038 books with over 1.4 million unique words. You can download the dataset from the following link: http://yknzhu.wixsite.com/mbweb
+
+Wikipedia English: A large-scale dump of English Wikipedia that can be used to pre-train models. You can download the dataset from the following link: https://dumps.wikimedia.org/enwiki/
+
+SQuAD 2.0: The Stanford Question Answering Dataset version 2.0 which consists of over 130,000 questions and answers. You can download the dataset from the following link: https://rajpurkar.github.io/SQuAD-explorer/
+
+=================================================
 run test-photo.py --help
 usage: test-photo.py [-h] [-f FOLDER] [-n NUM_IMAGES]
 
