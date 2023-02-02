@@ -1,6 +1,39 @@
 
 
+================================================
+Let me break down each step of the data preprocessing implemented by Nvidia's Deep Learning examples Tensorflow BERT:
 
+Tokenization: This step involves breaking down the input text into individual tokens, where each token represents a word or punctuation. The tokenization is performed using the tokenizer provided by the BERT library, which uses a vocabulary file containing the most common words and subwords in the training data.
+
+Input Encoding: After tokenization, each token is then assigned a unique numerical representation, called an ID. This encoding is used to feed the input data into the deep learning model. BERT uses a specific input encoding scheme, known as the BERT input encoding, which includes additional information such as the position of the tokens within the sequence and the sentence segment information.
+
+Padding: To ensure that all input sequences have the same length, the shorter sequences are padded with zeros. The padding is done to the right side of the sequence.
+
+Masking: BERT uses a technique called masking, where some of the tokens in the input sequence are masked, or replaced with a special token [MASK]. The purpose of masking is to predict the original token from the masked token, so the model learns to understand the context of the words in the sequence.
+
+Batch preparation: The input data is then divided into smaller batches, where each batch contains a certain number of samples. The number of samples in a batch is a hyperparameter that can be adjusted based on the available memory and computational resources. The batches are then shuffled to ensure that the model sees a diverse set of input sequences during each training iteration.
+
+These are the main steps involved in the data preprocessing in Nvidia's Deep Learning examples Tensorflow BERT.
+
+
+
+
+
+Nvidia's Deep Learning examples for TensorFlow BERT implement data preprocessing using the following steps:
+
+Tokenization: The raw text data is tokenized into subwords using WordPiece tokenization.
+
+Mapping tokens to IDs: Each token is then mapped to a unique integer ID.
+
+Padding: The token IDs are then padded to a maximum sequence length to ensure that all input sequences have the same length.
+
+Creating attention masks: An attention mask is created to indicate which tokens in the input sequence should be attended to by the BERT model and which should be ignored.
+
+Generating input tensors: The token IDs and attention masks are then converted into tensors, which are the input to the BERT model.
+
+These steps are performed using the tokenizer and prepare_inputs functions provided by the TensorFlow BERT library. The preprocessed data can then be fed into the BERT model for training or fine-tuning.
+
+============================================================
 /usr/bin/python: Error while finding module specification for 'wikiextractor.WikiExtractor' (ModuleNotFoundError: No module named 'wikiextractor')
 
 
