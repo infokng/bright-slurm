@@ -7,6 +7,15 @@ I0202 05:01:13.687921 140737349957440 model_training_utils.py:540] Perf 508.03
 
 
 
+
+I0202 05:25:58.336649 140737349957440 model_training_utils.py:523] Saved checkpoint to /results/tf_bert_pretraining_lamb_large_fp16_gbs17680_gbs23840_230202043547/phase_1/ckpt-2
+I0202 05:25:58.344990 140737349957440 model_training_utils.py:538] Step: 200 Lr 0.0001515 Loss scale 32768
+I0202 05:25:58.345090 140737349957440 model_training_utils.py:539] Train Step: 200/7038  / loss = 9.3572998046875 / time = 1479.187 sec  masked_lm_accuracy = 0.068735  lm_example_loss = 16.000000  next_sentence_accuracy = 0.603206  next_sentence_loss = 1.000000
+I0202 05:25:58.345143 140737349957440 model_training_utils.py:540] Perf 519.21
+
+
+
+
 ================================================
 Let me break down each step of the data preprocessing implemented by Nvidia's Deep Learning examples Tensorflow BERT:
 
