@@ -1,4 +1,204 @@
 
+
+root@node002:~/bert_tf2# bash scripts/run_pretraining_lamb.sh 60 10 8 7.5e-4 5e-4 fp16 true 2 2000 200 7820 100 64 192 large
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+Container nvidia build =  19902717
+Saving checkpoints to /results/tf_bert_pretraining_lamb_large_fp16_gbs17680_gbs23840_230203055722
+Logs written to /results/tf_bert_pretraining_lamb_large_fp16_gbs17680_gbs23840_230203055722/tf_bert_pretraining_lamb_large_fp16_gbs17680_gbs23840.230203055722.log
++ bash scripts/run_pretraining_lamb_phase1.sh 60 10 8 7.500000e-04 5.000000e-04 fp16 true 2 2000 200 7820 100 64 192 large
++ tee -a /results/tf_bert_pretraining_lamb_large_fp16_gbs17680_gbs23840_230203055722/tf_bert_pretraining_lamb_large_fp16_gbs17680_gbs23840.230203055722.log
+dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
+Container nvidia build =  19902717
+XLA activated
+2023-02-03 05:57:22.750717: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2023-02-03 05:57:22.750717: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+/usr/local/lib/python3.8/dist-packages/tensorflow_addons/utils/ensure_tf_install.py:54: UserWarning: Tensorflow Addons supports using Python ops for all Tensorflow versions above or equal to 2.2.0 and strictly below 2.4.0 (nightly versions are not supported).
+ The versions of TensorFlow you are currently using is 2.4.0 and is not supported.
+Some things might work, some things might not.
+If you were to encounter a bug, do not file an issue.
+If you want to make sure you're using a tested and supported configuration, either change the TensorFlow version or the TensorFlow Addons's version.
+You can find the compatibility matrix in TensorFlow Addon's readme:
+https://github.com/tensorflow/addons
+  warnings.warn(
+2023-02-03 05:57:24.271637: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+/usr/local/lib/python3.8/dist-packages/tensorflow_addons/utils/ensure_tf_install.py:54: UserWarning: Tensorflow Addons supports using Python ops for all Tensorflow versions above or equal to 2.2.0 and strictly below 2.4.0 (nightly versions are not supported).
+ The versions of TensorFlow you are currently using is 2.4.0 and is not supported.
+Some things might work, some things might not.
+If you were to encounter a bug, do not file an issue.
+If you want to make sure you're using a tested and supported configuration, either change the TensorFlow version or the TensorFlow Addons's version.
+You can find the compatibility matrix in TensorFlow Addon's readme:
+https://github.com/tensorflow/addons
+  warnings.warn(
+2023-02-03 05:57:24.272523: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2023-02-03 05:57:24.272878: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcuda.so.1
+2023-02-03 05:57:24.273830: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcuda.so.1
+2023-02-03 05:57:24.522574: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Found device 0 with properties:
+pciBusID: 0000:af:00.0 name: NVIDIA A100-PCIE-40GB computeCapability: 8.0
+coreClock: 1.41GHz coreCount: 108 deviceMemorySize: 39.45GiB deviceMemoryBandwidth: 1.41TiB/s
+2023-02-03 05:57:24.525978: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Found device 1 with properties:
+pciBusID: 0000:d8:00.0 name: NVIDIA A100-PCIE-40GB computeCapability: 8.0
+coreClock: 1.41GHz coreCount: 108 deviceMemorySize: 39.45GiB deviceMemoryBandwidth: 1.41TiB/s
+2023-02-03 05:57:24.526004: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2023-02-03 05:57:24.528315: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Found device 0 with properties:
+pciBusID: 0000:af:00.0 name: NVIDIA A100-PCIE-40GB computeCapability: 8.0
+coreClock: 1.41GHz coreCount: 108 deviceMemorySize: 39.45GiB deviceMemoryBandwidth: 1.41TiB/s
+2023-02-03 05:57:24.530068: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Found device 1 with properties:
+pciBusID: 0000:d8:00.0 name: NVIDIA A100-PCIE-40GB computeCapability: 8.0
+coreClock: 1.41GHz coreCount: 108 deviceMemorySize: 39.45GiB deviceMemoryBandwidth: 1.41TiB/s
+2023-02-03 05:57:24.530109: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2023-02-03 05:57:24.531024: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.11
+2023-02-03 05:57:24.531097: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.11
+2023-02-03 05:57:24.532429: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2023-02-03 05:57:24.532792: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2023-02-03 05:57:24.536585: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.11
+2023-02-03 05:57:24.536614: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.11
+2023-02-03 05:57:24.536645: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.11
+2023-02-03 05:57:24.537630: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.11
+2023-02-03 05:57:24.537767: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.8
+2023-02-03 05:57:24.537927: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2023-02-03 05:57:24.538275: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2023-02-03 05:57:24.543475: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.11
+2023-02-03 05:57:24.544002: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1888] Adding visible gpu devices: 0, 1
+2023-02-03 05:57:24.544653: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.11
+2023-02-03 05:57:24.544783: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.8
+2023-02-03 05:57:24.551055: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1888] Adding visible gpu devices: 0, 1
+2023-02-03 05:57:24.768149: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2023-02-03 05:57:24.770066: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+INFO:tensorflow:Mixed precision compatibility check (mixed_float16): OK
+Your GPUs will likely run quickly with dtype policy mixed_float16 as they all have compute capability of at least 7.0
+2023-02-03 05:57:24.772051: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+I0203 05:57:24.771905 140737349957440 device_compatibility_check.py:126] Mixed precision compatibility check (mixed_float16): OK
+Your GPUs will likely run quickly with dtype policy mixed_float16 as they all have compute capability of at least 7.0
+WARNING:tensorflow:From /usr/local/lib/python3.8/dist-packages/tensorflow/python/keras/mixed_precision/loss_scale.py:56: DynamicLossScale.__init__ (from tensorflow.python.training.experimental.loss_scale) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.keras.mixed_precision.LossScaleOptimizer instead. LossScaleOptimizer now has all the functionality of DynamicLossScale
+W0203 05:57:24.772253 140737349957440 deprecation.py:333] From /usr/local/lib/python3.8/dist-packages/tensorflow/python/keras/mixed_precision/loss_scale.py:56: DynamicLossScale.__init__ (from tensorflow.python.training.experimental.loss_scale) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.keras.mixed_precision.LossScaleOptimizer instead. LossScaleOptimizer now has all the functionality of DynamicLossScale
+2023-02-03 05:57:24.773772: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+INFO:tensorflow:Mixed precision compatibility check (mixed_float16): OK
+Your GPUs will likely run quickly with dtype policy mixed_float16 as they all have compute capability of at least 7.0
+I0203 05:57:24.775626 140737349957440 device_compatibility_check.py:126] Mixed precision compatibility check (mixed_float16): OK
+Your GPUs will likely run quickly with dtype policy mixed_float16 as they all have compute capability of at least 7.0
+WARNING:tensorflow:From /usr/local/lib/python3.8/dist-packages/tensorflow/python/keras/mixed_precision/loss_scale.py:56: DynamicLossScale.__init__ (from tensorflow.python.training.experimental.loss_scale) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.keras.mixed_precision.LossScaleOptimizer instead. LossScaleOptimizer now has all the functionality of DynamicLossScale
+W0203 05:57:24.775983 140737349957440 deprecation.py:333] From /usr/local/lib/python3.8/dist-packages/tensorflow/python/keras/mixed_precision/loss_scale.py:56: DynamicLossScale.__init__ (from tensorflow.python.training.experimental.loss_scale) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.keras.mixed_precision.LossScaleOptimizer instead. LossScaleOptimizer now has all the functionality of DynamicLossScale
+2023-02-03 05:57:24.800199: I tensorflow/compiler/jit/xla_gpu_device.cc:99] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2023-02-03 05:57:24.800293: I tensorflow/compiler/jit/xla_gpu_device.cc:99] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2023-02-03 05:57:24.802062: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Found device 0 with properties:
+pciBusID: 0000:af:00.0 name: NVIDIA A100-PCIE-40GB computeCapability: 8.0
+coreClock: 1.41GHz coreCount: 108 deviceMemorySize: 39.45GiB deviceMemoryBandwidth: 1.41TiB/s
+2023-02-03 05:57:24.802095: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2023-02-03 05:57:24.802132: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.11
+2023-02-03 05:57:24.802144: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.11
+2023-02-03 05:57:24.802156: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2023-02-03 05:57:24.802168: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2023-02-03 05:57:24.802181: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.11
+2023-02-03 05:57:24.802192: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.11
+2023-02-03 05:57:24.802205: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.8
+2023-02-03 05:57:24.802201: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Found device 0 with properties:
+pciBusID: 0000:d8:00.0 name: NVIDIA A100-PCIE-40GB computeCapability: 8.0
+coreClock: 1.41GHz coreCount: 108 deviceMemorySize: 39.45GiB deviceMemoryBandwidth: 1.41TiB/s
+2023-02-03 05:57:24.802223: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2023-02-03 05:57:24.802257: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.11
+2023-02-03 05:57:24.802280: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.11
+2023-02-03 05:57:24.802294: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2023-02-03 05:57:24.802306: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2023-02-03 05:57:24.802319: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.11
+2023-02-03 05:57:24.802331: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.11
+2023-02-03 05:57:24.802343: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.8
+2023-02-03 05:57:24.805686: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1888] Adding visible gpu devices: 0
+2023-02-03 05:57:24.805729: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2023-02-03 05:57:24.805831: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1888] Adding visible gpu devices: 1
+2023-02-03 05:57:24.805859: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2023-02-03 05:57:25.641719: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1287] Device interconnect StreamExecutor with strength 1 edge matrix:
+2023-02-03 05:57:25.641765: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1293]      0
+2023-02-03 05:57:25.641772: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1306] 0:   N
+2023-02-03 05:57:25.646476: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 37800 MB memory) -> physical GPU (device: 0, name: NVIDIA A100-PCIE-40GB, pci bus id: 0000:af:00.0, compute capability: 8.0)
+2023-02-03 05:57:25.652653: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1287] Device interconnect StreamExecutor with strength 1 edge matrix:
+2023-02-03 05:57:25.652700: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1293]      1
+2023-02-03 05:57:25.652707: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1306] 1:   N
+2023-02-03 05:57:25.657622: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 37800 MB memory) -> physical GPU (device: 1, name: NVIDIA A100-PCIE-40GB, pci bus id: 0000:d8:00.0, compute capability: 8.0)
+I0203 05:57:25.676026 140737349957440 run_pretraining.py:123] init_lr = 0.001500
+I0203 05:57:25.682729 140737349957440 run_pretraining.py:123] init_lr = 0.001500
+WARNING:tensorflow:
+The following Variables were used a Lambda layer's call (lambda_2), but
+are not present in its tracked objects:
+  <tf.Variable 'word_embeddings/embeddings:0' shape=(30522, 1024) dtype=float32>
+It is possible that this is intended behavior, but it is more likely
+an omission. This is a strong indication that this layer should be
+formulated as a subclassed Layer rather than a Lambda layer.
+W0203 05:57:29.200984 140737349957440 core.py:966]
+The following Variables were used a Lambda layer's call (lambda_2), but
+are not present in its tracked objects:
+  <tf.Variable 'word_embeddings/embeddings:0' shape=(30522, 1024) dtype=float32>
+It is possible that this is intended behavior, but it is more likely
+an omission. This is a strong indication that this layer should be
+formulated as a subclassed Layer rather than a Lambda layer.
+WARNING:tensorflow:
+The following Variables were used a Lambda layer's call (lambda_2), but
+are not present in its tracked objects:
+  <tf.Variable 'word_embeddings/embeddings:0' shape=(30522, 1024) dtype=float32>
+It is possible that this is intended behavior, but it is more likely
+an omission. This is a strong indication that this layer should be
+formulated as a subclassed Layer rather than a Lambda layer.
+W0203 05:57:29.272504 140737349957440 core.py:966]
+The following Variables were used a Lambda layer's call (lambda_2), but
+are not present in its tracked objects:
+  <tf.Variable 'word_embeddings/embeddings:0' shape=(30522, 1024) dtype=float32>
+It is possible that this is intended behavior, but it is more likely
+an omission. This is a strong indication that this layer should be
+formulated as a subclassed Layer rather than a Lambda layer.
+decayed_learning_rate_at_crossover_point = 1.500000e-03, adjusted_init_lr = 1.500000e-03
+decayed_learning_rate_at_crossover_point = 1.500000e-03, adjusted_init_lr = 1.500000e-03
+
+
+
+
+
+2023-02-03 05:57:58.196798: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:116] None of the MLIR optimization passes are enabled (registered 2)
+2023-02-03 05:57:58.211253: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 2100000000 Hz
+2023-02-03 05:57:59.110056: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:116] None of the MLIR optimization passes are enabled (registered 2)
+2023-02-03 05:57:59.124726: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 2100000000 Hz
+2023-02-03 05:57:59.764341: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7ff904001410 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2023-02-03 05:57:59.764417: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA A100-PCIE-40GB, Compute Capability 8.0
+2023-02-03 05:57:59.764442: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (1): NVIDIA A100-PCIE-40GB, Compute Capability 8.0
+2023-02-03 05:57:59.999380: I tensorflow/compiler/jit/xla_compilation_cache.cc:337] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+2023-02-03 05:58:00.720522: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7ff8b4001410 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2023-02-03 05:58:00.720594: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA A100-PCIE-40GB, Compute Capability 8.0
+2023-02-03 05:58:00.720622: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (1): NVIDIA A100-PCIE-40GB, Compute Capability 8.0
+2023-02-03 05:58:00.937379: I tensorflow/compiler/jit/xla_compilation_cache.cc:337] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+
+
+
+
+2023-02-03 05:59:08.579223: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1642] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+2023-02-03 05:59:12.747219: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1642] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+2023-02-03 05:59:16.766041: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.11
+2023-02-03 05:59:17.414011: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.11
+
+
+2023-02-03 05:59:21.527002: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.11
+
+
+2023-02-03 05:59:22.167250: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.11
+
+
+I0203 06:22:52.553852 140737349957440 model_training_utils.py:523] Saved checkpoint to /results/tf_bert_pretraining_lamb_large_fp16_gbs17680_gbs23840_230203055722/phase_1/ckpt-1
+I0203 06:22:52.563970 140737349957440 model_training_utils.py:538] Step: 100 Lr 7.575e-05 Loss scale 32768
+I0203 06:22:52.564061 140737349957440 model_training_utils.py:539] Train Step: 100/7038  / loss = 10.353649139404297 / time = 1516.255 sec  masked_lm_accuracy = 0.036602  lm_example_loss = 16.000000  next_sentence_accuracy = 0.551070  next_sentence_loss = 1.000000
+I0203 06:22:52.564102 140737349957440 model_training_utils.py:540] Perf 506.51
+I0203 06:47:43.378864 140737349957440 model_training_utils.py:523] Saved checkpoint to /results/tf_bert_pretraining_lamb_large_fp16_gbs17680_gbs23840_230203055722/phase_1/ckpt-2
+I0203 06:47:43.393725 140737349957440 model_training_utils.py:538] Step: 200 Lr 0.0001515 Loss scale 32768
+I0203 06:47:43.393826 140737349957440 model_training_utils.py:539] Train Step: 200/7038  / loss = 9.26272964477539 / time = 1485.074 sec  masked_lm_accuracy = 0.070117  lm_example_loss = 16.000000  next_sentence_accuracy = 0.608391  next_sentence_loss = 1.000000
+I0203 06:47:43.393873 140737349957440 model_training_utils.py:540] Perf 517.15
+
+
+
+===========================
 2023-02-03 04:58:26.700652: I tensorflow/stream_executor/cuda/cuda_blas.cc:1838] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
 Traceback (most recent call last):
   File "/workspace/bert_tf2/run_pretraining.py", line 207, in <module>
