@@ -1,4 +1,40 @@
 
+2023-02-03 04:58:26.700652: I tensorflow/stream_executor/cuda/cuda_blas.cc:1838] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
+Traceback (most recent call last):
+  File "/workspace/bert_tf2/run_pretraining.py", line 207, in <module>
+    app.run(main)
+  File "/usr/local/lib/python3.8/dist-packages/absl/app.py", line 300, in run
+    _run_main(main, args)
+  File "/usr/local/lib/python3.8/dist-packages/absl/app.py", line 251, in _run_main
+    sys.exit(main(argv))
+  File "/workspace/bert_tf2/run_pretraining.py", line 203, in main
+    run_bert_pretrain(strategy)
+  File "/workspace/bert_tf2/run_pretraining.py", line 157, in run_bert_pretrain
+    return run_customized_training(
+  File "/workspace/bert_tf2/run_pretraining.py", line 124, in run_customized_training
+    trained_model = model_training_utils.run_customized_training_loop(
+  File "/workspace/bert_tf2/official/modeling/model_training_utils.py", line 506, in run_customized_training_loop
+    train_steps(train_iterator,
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/eager/def_function.py", line 828, in __call__
+    result = self._call(*args, **kwds)
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/eager/def_function.py", line 888, in _call
+    return self._stateless_fn(*args, **kwds)
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/eager/function.py", line 2942, in __call__
+    return graph_function._call_flat(
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/eager/function.py", line 1918, in _call_flat
+    return self._build_call_outputs(self._inference_function.call(
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/eager/function.py", line 555, in call
+    outputs = execute.execute(
+  File "/usr/local/lib/python3.8/dist-packages/tensorflow/python/eager/execute.py", line 59, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+tensorflow.python.framework.errors_impl.CancelledError:  [_Derived_]RecvAsync is cancelled.
+         [[{{node cluster_13_1/merge_oidx_0/_60}}]] [Op:__inference_train_steps_132767]
+
+Function call stack:
+train_steps
+
+
+===================================================================
 2023-02-03 03:01:06.704637: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1642] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
 2023-02-03 03:01:07.516794: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1642] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
 2023-02-03 03:01:08.473505: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1642] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
