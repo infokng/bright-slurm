@@ -1,5 +1,13 @@
 
 
+TSBS (Time-series Benchmark Suite) is a benchmarking suite that allows testing of time-series databases. Time-series databases are databases that are optimized for handling time-series data, i.e. data that is sampled at regular intervals and stored over time. Some examples of time-series data are stock prices, weather data, server performance metrics, and IoT sensor data.
+
+The goal of the TSBS benchmark suite is to evaluate the performance of different time-series databases and help users choose the right database for their needs. The suite consists of a set of tests and workloads that measure the performance of the database in terms of metrics such as insert rate, query rate, latency, and memory usage. These metrics are used to compare the performance of different databases and evaluate their strengths and weaknesses.
+
+TSBS is written in Golang and uses a modular architecture, which allows users to easily extend and customize the benchmarking suite to fit their specific use case.
+
+
+===============================
 root@node001:~/bert_tf2# bash scripts/run_pretraining_lamb.sh 60 10 8 7.5e-4 5e-4 fp16 true 2 2000 200 7820 100 64 192 large
 dpkg: warning: version '4.18.0-372.9.1.el8.x86_64' has bad syntax: invalid character in revision number
 Container nvidia build =  19902717
