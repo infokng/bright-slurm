@@ -1,5 +1,11 @@
 
 
+root@6903151fce4e:/mnt# sh benchmark.sh datagen -h
+benchmark.sh: 2: Bad substitution
+benchmark.sh: 7: Syntax error: "(" unexpected
+
+
+=============================================================================
 It is possible that this is intended behavior, but it is more likely
 an omission. This is a strong indication that this layer should be
 formulated as a subclassed Layer rather than a Lambda layer.
