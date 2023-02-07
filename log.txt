@@ -4,6 +4,8 @@ root@6903151fce4e:/mnt# sh benchmark.sh datagen -h
 benchmark.sh: 2: Bad substitution
 benchmark.sh: 7: Syntax error: "(" unexpected
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )
 
 =============================================================================
 It is possible that this is intended behavior, but it is more likely
