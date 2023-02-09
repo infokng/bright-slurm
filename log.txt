@@ -1,5 +1,38 @@
 
 
+Substituting the given values:
+
+total_compute_time = (313532 * 500)/120/48 * 0.968
+
+= (156766000)/5760 * 0.968
+
+= 2732.1807407407407 * 0.968
+
+= 2621.074444444444 seconds
+
+So, the total_compute_time is approximately 2621.074444444444 seconds.
+
+AUU = (5404 - 2621) / 2621 = 1.0379 or about 103.79%
+
++++++++++++++++++
+
+To calculate total_compute_time, we can use the following formula:
+
+total_compute_time = (records/file * total_files) / (simulated_accelerators * batch_size * sleep_time)
+
+Plugging in the values, we get:
+
+total_compute_time = (313532 * 500) / (120 * 250 * 0.968)
+total_compute_time = (15767600) / (30000)
+total_compute_time = 5.2592
+
+So the total_compute_time is approximately 5.2592 seconds.
+
+AUU = (18743 - 5.2)/5.2
+
+AUU = 3614.042307692308
+
+==============================================================
 root@6903151fce4e:/mnt# sh benchmark.sh datagen -h
 benchmark.sh: 2: Bad substitution
 benchmark.sh: 7: Syntax error: "(" unexpected
