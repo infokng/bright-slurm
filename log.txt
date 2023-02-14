@@ -1,5 +1,47 @@
 
 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mlperf
+  labels:
+    devcloud: autorun
+    app: mlperf
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node001
+  containers:
+  - name: mlperf
+    image: 192.168.61.4:5000/nvidia_rn50_mx:0.2 bash
+    imagePullPolicy: IfNotPresent
+    securityContext:
+      privileged: true
+    command: ["/bin/sh", "-c"]
+    args:
+        - "ls /data/imagenet/train-val-recordio-passthrough/"
+    - name: mlperf-volume
+      mountPath: /data/imagenet/train-val-recordio-passthrough
+    - mountPath: /tmp
+      name: mlperf-log
+  volumes:
+  - name: mlperf-volume
+    persistentVolumeClaim:
+      claimName: mlperf-imagenet-lustre-p5510-n1-gpu-imagenet-image-pvc
+  - name: mlperf-log
+    hostPath:
+      path: "/mnt/"
+      #  - name: params-yaml
+      #    hostPath:
+      #      path: "/root/autorun_karan/apps/mlperf/params.yaml"
+      #  - name: darshan-volume
+      #    hostPath:
+      #      path: "/darshan-logs"
+  restartPolicy: Never
+  imagePullSecrets:
+  - name: regcred
+
+
+============================================================================
 Substituting the given values:
 
 total_compute_time = (313532 * 500)/120/48 * 0.968
