@@ -1,5 +1,36 @@
 
 
+Events:
+  Type     Reason       Age                From               Message
+  ----     ------       ----               ----               -------
+  Normal   Scheduled    62s                default-scheduler  Successfully assigned default/mlperf to node001
+  Warning  FailedMount  30s (x7 over 62s)  kubelet            MountVolume.MountDevice failed for volume "pvc-7d015047-7d01-45c8-8325-afd84cd9adc1" : kubernetes.io/csi: attacher.MountDevice failed to create newCsiDriverClient: driver name org.democratic-csi.lustre-client not found in the list of registered CSI drivers
+[root@bright88 ~]#
+[root@bright88 ~]#
+[root@bright88 ~]#
+[root@bright88 ~]#
+[root@bright88 ~]#
+[root@bright88 ~]# kubectl get pvc
+NAME                                                     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    AGE
+mlperf-imagenet-lustre-p5510-n1-gpu-imagenet-image-pvc   Bound    pvc-7d015047-7d01-45c8-8325-afd84cd9adc1   700Gi      RWO            lustre-client   18d
+[root@bright88 ~]# kubectl get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                                                            STORAGECLASS    REASON   AGE
+pvc-3bab6160-3057-4aae-98a9-a33e385b8f29   20Gi       RWO            Delete           Released   kubeflow/minio-pvc                                               local-path               46d
+pvc-51053ed8-4392-495c-9863-56e7d180a9cb   20Gi       RWO            Delete           Bound      kubeflow/minio-pvc                                               local-path               34d
+pvc-7d015047-7d01-45c8-8325-afd84cd9adc1   700Gi      RWO            Delete           Bound      default/mlperf-imagenet-lustre-p5510-n1-gpu-imagenet-image-pvc   lustre-client            18d
+pvc-92c61fc5-b205-4ede-b813-278783dae6b3   10Gi       RWO            Delete           Bound      istio-system/authservice-pvc                                     local-path               34d
+pvc-9931da33-7830-47b3-9915-2dee91bd6d03   10Gi       RWO            Delete           Released   kubeflow/katib-mysql                                             local-path               46d
+pvc-b41a8874-8268-4743-b271-163dbe7dd124   10Gi       RWO            Delete           Released   istio-system/authservice-pvc                                     local-path               46d
+pvc-c72f7b19-e0d0-475f-a6be-c2355d8c9553   10Gi       RWO            Delete           Bound      kubeflow/katib-mysql                                             local-path               34d
+pvc-e05b41d8-8c00-42a8-988b-9e6274fcbf1f   20Gi       RWO            Delete           Bound      kubeflow/mysql-pv-claim                                          local-path               34d
+[root@bright88 ~]# vim /cm/shared/AI-ML_autorun/apps/imagenet/yaml/load-1.yaml
+[root@bright88 ~]# kubectl get sc
+NAME                   PROVISIONER                        RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+local-path (default)   rancher.io/local-path              Delete          Immediate           false                  48d
+lustre-client          org.democratic-csi.lustre-client   Delete          Immediate           false                  24d
+
+
+====================================================
 apiVersion: v1
 kind: Pod
 metadata:
