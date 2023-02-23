@@ -1,5 +1,62 @@
 
+[1,0]<stderr>:In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+[1,0]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,0]<stderr>:functionality to allow for backward compatibility.
+[1,0]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,0]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `image_decoder` is now deprecated. Use `decoders.image` instead.
+[1,0]<stderr>:In DALI 1.0 all decoders were moved into a dedicated :mod:`~nvidia.dali.fn.decoders`
+[1,0]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,0]<stderr>:functionality to allow for backward compatibility.
+[1,0]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,0]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/plugin/base_iterator.py:192: Warning: Please set `reader_name` and don't set last_batch_padded and size manually whenever possible. This may le
+ad, in some situations, to missing some samples or returning duplicated ones. Check the Sharding section of the documentation for more details.
+[1,0]<stderr>:  _iterator_deprecation_warning()
+[1,0]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/plugin/mxnet.py:95: Warning: Please do not use `fill_last_batch` and use `last_batch_policy`                            instead.
+[1,0]<stderr>:  _DaliBaseIterator.__init__(self,
+[1,0]<stderr>:2023-02-23 02:06:26,487:WARNING: DALI iterator does not support resetting while epoch is not finished.                              Ignoring...
+[1,0]<stderr>:2023-02-23 02:06:26,487:INFO: Starting epoch 0
+[1,1]<stderr>:==== backtrace (tid:     92) ====
+[1,1]<stderr>: 0 0x0000000000043090 killpg()  ???:0
+[1,1]<stderr>: 1 0x000000000018bb41 __nss_database_lookup()  ???:0
+[1,1]<stderr>: 2 0x000000000007587d ncclGroupEnd()  ???:0
+[1,1]<stderr>: 3 0x000000000007b0ef ncclGroupEnd()  ???:0
+[1,1]<stderr>: 4 0x0000000000059e97 ncclGetUniqueId()  ???:0
+[1,1]<stderr>: 5 0x0000000000048b69 ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,1]<stderr>: 6 0x000000000004a655 ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,1]<stderr>: 7 0x00000000000652a6 ncclRedOpDestroy()  ???:0
+[1,1]<stderr>: 8 0x000000000004ae3b ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,1]<stderr>: 9 0x000000000004b098 ncclCommInitRank()  ???:0
+[1,1]<stderr>:10 0x000000000010d697 horovod::common::NCCLOpContext::InitNCCLComm()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/nccl_operations.cc:113
+[1,1]<stderr>:11 0x000000000010d898 horovod::common::NCCLAllreduce::Execute()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/nccl_operations.cc:180
+[1,1]<stderr>:12 0x00000000000d3f3d horovod::common::OperationManager::ExecuteAllreduce()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/operation_manager.cc:46
+[1,1]<stderr>:13 0x00000000000d436c horovod::common::OperationManager::ExecuteOperation()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/operation_manager.cc:112
+[1,1]<stderr>:14 0x00000000000a7838 horovod::common::(anonymous namespace)::BackgroundThreadLoop()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:297
+[1,1]<stderr>:15 0x00000000000a7838 std::__shared_ptr<CUevent_st*, (__gnu_cxx::_Lock_policy)2>::operator=()  /usr/include/c++/9/bits/shared_ptr_base.h:1265
+[1,1]<stderr>:16 0x00000000000a7838 std::shared_ptr<CUevent_st*>::operator=()  /usr/include/c++/9/bits/shared_ptr.h:335
+[1,1]<stderr>:17 0x00000000000a7838 horovod::common::Event::operator=()  /tmp/pip-req-build-mvs1f3me/horovod/common/common.h:186
+[1,1]<stderr>:18 0x00000000000a7838 horovod::common::Status::operator=()  /tmp/pip-req-build-mvs1f3me/horovod/common/common.h:198
+[1,1]<stderr>:19 0x00000000000a7838 PerformOperation()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:297
+[1,1]<stderr>:20 0x00000000000a7838 RunLoopOnce()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:790
+[1,1]<stderr>:21 0x00000000000a7838 BackgroundThreadLoop()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:654
+[1,1]<stderr>:22 0x00000000000d6de4 std::error_code::default_error_condition()  ???:0
+[1,1]<stderr>:23 0x0000000000008609 start_thread()  ???:0
+[1,1]<stderr>:24 0x000000000011f133 clone()  ???:0
+[1,1]<stderr>:=================================
+[1,2]<stderr>:==== backtrace (tid:     94) ====
+[1,2]<stderr>: 0 0x0000000000043090 killpg()  ???:0
+[1,2]<stderr>: 1 0x000000000018bb41 __nss_database_lookup()  ???:0
+[1,2]<stderr>: 2 0x000000000007587d ncclGroupEnd()  ???:0
+[1,2]<stderr>: 3 0x000000000007b2c7 ncclGroupEnd()  ???:0
+[1,2]<stderr>: 4 0x000000000005a1ec ncclGetUniqueId()  ???:0
+[1,2]<stderr>: 5 0x0000000000048b69 ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,2]<stderr>: 6 0x000000000004a655 ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,2]<stderr>: 7 0x00000000000652a6 ncclRedOpDestroy()  ???:0
+[1,2]<stderr>: 8 0x000000000004ae3b ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,2]<stderr>: 9 0x000000000004b098 ncclCommInitRank()  ???:0
+[1,2]<stderr>:10 0x000000000010d697 horovod::common::NCCLOpContext::InitNCCLComm()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/nccl_operations.cc:113
 
+
+=================================
 [1,1]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/plugin/mxnet.py:95: Warning: Please do not use `fill_last_batch` and use `last_batch_policy`                            instead.
 [1,1]<stderr>:  _DaliBaseIterator.__init__(self,
 [1,1]<stderr>:2023-02-23 02:06:24,506:WARNING: DALI iterator does not support resetting while epoch is not finished.                              Ignoring...
