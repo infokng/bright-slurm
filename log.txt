@@ -1,5 +1,12 @@
 
 
+
+NVIDIA's DALI library utilizes hardware-accelerated data loading to efficiently transfer data directly from storage to the GPU without going through the CPU. This is achieved by using NVIDIA's GPUDirect Storage technology, which allows for direct communication between storage devices and GPUs over PCIe.
+
+When using DALI, data is loaded directly from NVMe SSD to GPU memory, bypassing the CPU altogether. This greatly reduces the amount of data movement and minimizes the CPU overhead, resulting in faster data loading and higher throughput. Additionally, DALI uses sophisticated data pre-processing techniques to further optimize data loading and improve training performance.
+
+
+=============
 [1,2]<stderr>: 3 0x000000000007b2c7 ncclGroupEnd()  ???:0                                                                                                                                               [2/1298]
 [1,2]<stderr>: 4 0x000000000005a1ec ncclGetUniqueId()  ???:0
 [1,2]<stderr>: 5 0x0000000000048b69 ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
