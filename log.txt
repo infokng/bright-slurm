@@ -1,5 +1,52 @@
 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mlperf
+  labels:
+    devcloud: autorun
+    app: mlperf
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node001
+  containers:
+  - name: mlperf
+    image: 192.168.61.4:5000/nvidia_rn50_mx:0.2
+    imagePullPolicy: IfNotPresent
+    resources:
+      limits:
+        nvidia.com/gpu: 3
+    securityContext:
+      privileged: true
+    command: ["/bin/sh", "-c"]
+    args:
+        - "ls /data/imagenet/train-val-recordio-passthrough/ &&
+           sleep 2 &&
+           ./runner -n 3 -b 64 --data-root /data/imagenet/train-val-recordio-passthrough/tiny-imagenet-200"
+    volumeMounts:
+    - name: mlperf-volume
+      mountPath: /data/imagenet/train-val-recordio-passthrough
+    - mountPath: /tmp
+      name: mlperf-log
+  volumes:
+  - name: mlperf-volume
+    persistentVolumeClaim:
+      claimName: mlperf-imagenet-lustre-p5510-n1-gpu-imagenet-image-pvc
+  - name: mlperf-log
+    hostPath:
+      path: "/mnt/"
+      #  - name: params-yaml
+      #    hostPath:
+      #      path: "/root/autorun_karan/apps/mlperf/params.yaml"
+      #  - name: darshan-volume
+      #    hostPath:
+      #      path: "/darshan-logs"
+  restartPolicy: Never
+  imagePullSecrets:
+  - name: regcred
 
+
+===============================================
 [1,2]<stderr>:[01:52:47] ../src/storage/storage.cc:196: Using Pooled (Naive) StorageManager for GPU
 [1,2]<stderr>:[[1,2]<stderr>:01:52:47] ../src/storage/storage.cc:196: Using Pooled (Naive) StorageManager for CPU
 [1,2]<stderr>:2023-02-23 01:52:47,610:INFO: starting epoch 0
