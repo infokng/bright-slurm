@@ -1,4 +1,61 @@
 
+root@mlperf:/workspace/rn50# ./runner -n 3 -b 64 --data-root /data/imagenet/train-val-recordio-passthrough/tiny-imagenet-200                                                                          [168/1298]
+[1,0]<stdout>:DLL 2023-02-23 02:06:12.819128 - PARAMETER arch : resnetv15  num_layers : 50  num_groups : 32  num_classes : 1000  batchnorm_eps : 1e-05  batchnorm_mom : 0.9  fuse_bn_relu : 1  fuse_bn_add_relu
+: 1  mode : train_val  seed : None  gpus : [0, 1, 2]  kv_store : horovod  dtype : float16  amp : False  batch_size : 192  num_epochs : 90  run_epochs : -1  lr : 0.192  lr_schedule : cosine  lr_factor : 0.256
+ lr_steps : []  warmup_epochs : 5  optimizer : sgd  mom : 0.875  wd : 3.0517578125e-05  label_smoothing : 0.1  mixup : 0  disp_batches : 20  model_prefix : model  save_frequency : -1  begin_epoch : 0  load :
+None  test_io : False  test_io_mode : train  log : log.log  dllogger_log : dllogger_log.log  workspace : ./  logdir : None  no_metrics : False  benchmark_iters : None  data_train : /data/imagenet/train-val-re
+cordio-passthrough/tiny-imagenet-200/train.rec  data_train_idx : /data/imagenet/train-val-recordio-passthrough/tiny-imagenet-200/train.idx  data_val : /data/imagenet/train-val-recordio-passthrough/tiny-imagen
+et-200/val.rec  data_val_idx : /data/imagenet/train-val-recordio-passthrough/tiny-imagenet-200/val.idx  data_pred : None  data_backend : dali-gpu  image_shape : [4, 224, 224]  rgb_mean : [123.68, 116.779, 103
+.939]  rgb_std : [58.393, 57.12, 57.375]  input_layout : NCHW  conv_layout : NHWC  batchnorm_layout : NHWC  pooling_layout : NHWC  num_examples : 1281167  data_val_resize : 256  dali_separ_val : False  dali_t
+hreads : 6  dali_validation_threads : 10  dali_prefetch_queue : 5  dali_nvjpeg_memory_padding : 256  dali_fuse_decoder : 1  dali_nvjpeg_width_hint : 5980  dali_nvjpeg_height_hint : 6430  dali_dont_use_mmap :
+False  data_mxnet_threads : 40  random_crop : 0  random_mirror : 1  max_random_h : 0  max_random_s : 0  max_random_l : 0  min_random_aspect_ratio : 0.75  max_random_aspect_ratio : 1.33  max_random_rotate_angl
+e : 0  max_random_shear_ratio : 0  max_random_scale : 1  min_random_scale : 1  max_random_area : 1  min_random_area : 0.05  min_crop_size : -1  max_crop_size : -1  brightness : 0  contrast : 0  saturation : 0
+  pca_noise : 0  random_resized_crop : 1
+[1,0]<stderr>:[02:06:18] ../src/storage/storage.cc:196: Using Pooled (Naive) StorageManager for GPU
+[1,0]<stderr>:[02:06:18[1,0]<stderr>:] ../src/storage/storage.cc:196: Using Pooled (Naive) StorageManager for CPU
+[1,0]<stderr>:2023-02-23 02:06:18,308:INFO: starting epoch 0
+[1,2]<stderr>:[[1,2]<stderr>:02:06:18] ../src/storage/storage.cc:196: Using Pooled (Naive) StorageManager for GPU
+[1,2]<stderr>:[[1,2]<stderr>:02:06:18] ../src/storage/storage.cc:196: Using Pooled (Naive) StorageManager for CPU
+[1,1]<stderr>:[[1,1]<stderr>:02:06:18] ../src/storage/storage.cc:[1,1]<stderr>:196: Using Pooled (Naive) StorageManager for GPU
+[1,1]<stderr>:[02:06:18] ../src/storage/storage.cc:196: Using [1,1]<stderr>:Pooled (Naive) StorageManager for CPU
+[1,2]<stderr>:2023-02-23 02:06:18,355:INFO: starting epoch 0
+[1,1]<stderr>:2023-02-23 02:06:18,361:INFO: starting epoch 0
+[1,1]<stderr>:[mlperf:84   :0:92] Caught signal 7 (Bus error: nonexistent physical address)
+[1,0]<stderr>:[mlperf:83   :0:93] Caught signal 7 (Bus error: nonexistent physical address)
+[1,2]<stderr>:[mlperf:85   :0:94] Caught signal 7 (Bus error: nonexistent physical address)
+[1,1]<stderr>:/workspace/rn50/dali.py:83: DeprecationWarning: The argument ``output_dtype`` is a deprecated alias for ``dtype``. Use ``dtype`` instead.
+[1,1]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,1]<stderr>:/workspace/rn50/dali.py:83: DeprecationWarning: The argument ``image_type`` is no longer used and will be removed in a future release.
+[1,1]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,1]<stderr>:/workspace/rn50/dali.py:128: DeprecationWarning: The argument ``output_dtype`` is a deprecated alias for ``dtype``. Use ``dtype`` instead.
+[1,1]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,1]<stderr>:/workspace/rn50/dali.py:128: DeprecationWarning: The argument ``image_type`` is no longer used and will be removed in a future release.
+[1,1]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,1]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `coin_flip` is now deprecated. Use `random.coin_flip` instead.
+[1,1]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,1]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `mxnet_reader` is now deprecated. Use `readers.mxnet` instead.
+[1,1]<stderr>:In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+[1,1]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,1]<stderr>:functionality to allow for backward compatibility.
+[1,1]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,1]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `image_decoder_random_crop` is now deprecated. Use `decoders.image_random_crop` instead.
+[1,1]<stderr>:In DALI 1.0 all decoders were moved into a dedicated :mod:`~nvidia.dali.fn.decoders`
+[1,1]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,1]<stderr>:functionality to allow for backward compatibility.
+[1,1]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,1]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `mxnet_reader` is now deprecated. Use `readers.mxnet` instead.
+[1,1]<stderr>:In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+[1,1]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,1]<stderr>:functionality to allow for backward compatibility.
+[1,1]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,1]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `image_decoder` is now deprecated. Use `decoders.image` instead.
+[1,1]<stderr>:In DALI 1.0 all decoders were moved into a dedicated :mod:`~nvidia.dali.fn.decoders`
+[1,1]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,1]<stderr>:functionality to allow for backward compatibility.
+[1,1]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+
+
+===================
 apiVersion: v1
 kind: Pod
 metadata:
