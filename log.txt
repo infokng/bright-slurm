@@ -1,4 +1,62 @@
 
+
+[1,1]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/plugin/mxnet.py:95: Warning: Please do not use `fill_last_batch` and use `last_batch_policy`                            instead.
+[1,1]<stderr>:  _DaliBaseIterator.__init__(self,
+[1,1]<stderr>:2023-02-23 02:06:24,506:WARNING: DALI iterator does not support resetting while epoch is not finished.                              Ignoring...
+[1,1]<stderr>:2023-02-23 02:06:24,506:INFO: Starting epoch 0
+[1,2]<stderr>:/workspace/rn50/dali.py:83: DeprecationWarning: The argument ``output_dtype`` is a deprecated alias for ``dtype``. Use ``dtype`` instead.
+[1,2]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,2]<stderr>:/workspace/rn50/dali.py:83: DeprecationWarning: The argument ``image_type`` is no longer used and will be removed in a future release.
+[1,2]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,2]<stderr>:/workspace/rn50/dali.py:128: DeprecationWarning: The argument ``output_dtype`` is a deprecated alias for ``dtype``. Use ``dtype`` instead.
+[1,2]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,2]<stderr>:/workspace/rn50/dali.py:128: DeprecationWarning: The argument ``image_type`` is no longer used and will be removed in a future release.
+[1,2]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,2]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `coin_flip` is now deprecated. Use `random.coin_flip` instead.
+[1,2]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,2]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `mxnet_reader` is now deprecated. Use `readers.mxnet` instead.
+[1,2]<stderr>:In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+[1,2]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,2]<stderr>:functionality to allow for backward compatibility.
+[1,2]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,2]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `image_decoder_random_crop` is now deprecated. Use `decoders.image_random_crop` instead.
+[1,2]<stderr>:In DALI 1.0 all decoders were moved into a dedicated :mod:`~nvidia.dali.fn.decoders`
+[1,2]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,2]<stderr>:functionality to allow for backward compatibility.
+[1,2]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,2]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `mxnet_reader` is now deprecated. Use `readers.mxnet` instead.
+[1,2]<stderr>:In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+[1,2]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,2]<stderr>:functionality to allow for backward compatibility.
+[1,2]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,2]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `image_decoder` is now deprecated. Use `decoders.image` instead.
+[1,2]<stderr>:In DALI 1.0 all decoders were moved into a dedicated :mod:`~nvidia.dali.fn.decoders`
+[1,2]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+[1,2]<stderr>:functionality to allow for backward compatibility.
+[1,2]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,2]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/plugin/base_iterator.py:192: Warning: Please set `reader_name` and don't set last_batch_padded and size manually whenever possible. This may le
+ad, in some situations, to missing some samples or returning duplicated ones. Check the Sharding section of the documentation for more details.
+[1,2]<stderr>:  _iterator_deprecation_warning()
+[1,2]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/plugin/mxnet.py:95: Warning: Please do not use `fill_last_batch` and use `last_batch_policy`                            instead.
+[1,2]<stderr>:  _DaliBaseIterator.__init__(self,
+[1,2]<stderr>:2023-02-23 02:06:26,465:WARNING: DALI iterator does not support resetting while epoch is not finished.                              Ignoring...
+[1,2]<stderr>:2023-02-23 02:06:26,465:INFO: Starting epoch 0
+[1,0]<stderr>:/workspace/rn50/dali.py:83: DeprecationWarning: The argument ``output_dtype`` is a deprecated alias for ``dtype``. Use ``dtype`` instead.
+[1,0]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,0]<stderr>:/workspace/rn50/dali.py:83: DeprecationWarning: The argument ``image_type`` is no longer used and will be removed in a future release.
+[1,0]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,0]<stderr>:/workspace/rn50/dali.py:128: DeprecationWarning: The argument ``output_dtype`` is a deprecated alias for ``dtype``. Use ``dtype`` instead.
+[1,0]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,0]<stderr>:/workspace/rn50/dali.py:128: DeprecationWarning: The argument ``image_type`` is no longer used and will be removed in a future release.
+[1,0]<stderr>:  self.cmnp = ops.CropMirrorNormalize(device="gpu",
+[1,0]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `coin_flip` is now deprecated. Use `random.coin_flip` instead.
+[1,0]<stderr>:  op_instances.append(_OperatorInstance(input_set, self, **kwargs))
+[1,0]<stderr>:/usr/local/lib/python3.8/dist-packages/nvidia/dali/ops.py:649: DeprecationWarning: WARNING: `mxnet_reader` is now deprecated. Use `readers.mxnet` instead.
+[1,0]<stderr>:In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
+[1,0]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
+
+
+=====================
 root@mlperf:/workspace/rn50# ./runner -n 3 -b 64 --data-root /data/imagenet/train-val-recordio-passthrough/tiny-imagenet-200                                                                          [168/1298]
 [1,0]<stdout>:DLL 2023-02-23 02:06:12.819128 - PARAMETER arch : resnetv15  num_layers : 50  num_groups : 32  num_classes : 1000  batchnorm_eps : 1e-05  batchnorm_mom : 0.9  fuse_bn_relu : 1  fuse_bn_add_relu
 : 1  mode : train_val  seed : None  gpus : [0, 1, 2]  kv_store : horovod  dtype : float16  amp : False  batch_size : 192  num_epochs : 90  run_epochs : -1  lr : 0.192  lr_schedule : cosine  lr_factor : 0.256
