@@ -1,4 +1,64 @@
 
+
+[1,2]<stderr>: 3 0x000000000007b2c7 ncclGroupEnd()  ???:0                                                                                                                                               [2/1298]
+[1,2]<stderr>: 4 0x000000000005a1ec ncclGetUniqueId()  ???:0
+[1,2]<stderr>: 5 0x0000000000048b69 ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,2]<stderr>: 6 0x000000000004a655 ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,2]<stderr>: 7 0x00000000000652a6 ncclRedOpDestroy()  ???:0
+[1,2]<stderr>: 8 0x000000000004ae3b ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,2]<stderr>: 9 0x000000000004b098 ncclCommInitRank()  ???:0
+[1,2]<stderr>:10 0x000000000010d697 horovod::common::NCCLOpContext::InitNCCLComm()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/nccl_operations.cc:113
+[1,2]<stderr>:11 0x000000000010d898 horovod::common::NCCLAllreduce::Execute()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/nccl_operations.cc:180
+[1,2]<stderr>:12 0x00000000000d3f3d horovod::common::OperationManager::ExecuteAllreduce()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/operation_manager.cc:46
+[1,2]<stderr>:13 0x00000000000d436c horovod::common::OperationManager::ExecuteOperation()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/operation_manager.cc:112
+[1,2]<stderr>:14 0x00000000000a7838 horovod::common::(anonymous namespace)::BackgroundThreadLoop()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:297
+[1,2]<stderr>:15 0x00000000000a7838 std::__shared_ptr<CUevent_st*, (__gnu_cxx::_Lock_policy)2>::operator=()  /usr/include/c++/9/bits/shared_ptr_base.h:1265
+[1,2]<stderr>:16 0x00000000000a7838 std::shared_ptr<CUevent_st*>::operator=()  /usr/include/c++/9/bits/shared_ptr.h:335
+[1,2]<stderr>:17 0x00000000000a7838 horovod::common::Event::operator=()  /tmp/pip-req-build-mvs1f3me/horovod/common/common.h:186
+[1,2]<stderr>:18 0x00000000000a7838 horovod::common::Status::operator=()  /tmp/pip-req-build-mvs1f3me/horovod/common/common.h:198
+[1,2]<stderr>:19 0x00000000000a7838 PerformOperation()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:297
+[1,2]<stderr>:20 0x00000000000a7838 RunLoopOnce()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:790
+[1,2]<stderr>:21 0x00000000000a7838 BackgroundThreadLoop()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:654
+[1,2]<stderr>:22 0x00000000000d6de4 std::error_code::default_error_condition()  ???:0
+[1,2]<stderr>:23 0x0000000000008609 start_thread()  ???:0
+[1,2]<stderr>:24 0x000000000011f133 clone()  ???:0
+[1,2]<stderr>:=================================
+[1,0]<stderr>:==== backtrace (tid:     93) ====
+[1,0]<stderr>: 0 0x0000000000043090 killpg()  ???:0
+[1,0]<stderr>: 1 0x000000000018bb41 __nss_database_lookup()  ???:0
+[1,0]<stderr>: 2 0x000000000007587d ncclGroupEnd()  ???:0
+[1,0]<stderr>: 3 0x000000000007b0ef ncclGroupEnd()  ???:0
+[1,0]<stderr>: 4 0x0000000000059e97 ncclGetUniqueId()  ???:0
+[1,0]<stderr>: 5 0x0000000000048b69 ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,0]<stderr>: 6 0x000000000004a655 ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,0]<stderr>: 7 0x00000000000652a6 ncclRedOpDestroy()  ???:0
+[1,0]<stderr>: 8 0x000000000004ae3b ???()  /usr/lib/x86_64-linux-gnu/libnccl.so.2:0
+[1,0]<stderr>: 9 0x000000000004b098 ncclCommInitRank()  ???:0
+[1,0]<stderr>:10 0x000000000010d697 horovod::common::NCCLOpContext::InitNCCLComm()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/nccl_operations.cc:113
+[1,0]<stderr>:11 0x000000000010d898 horovod::common::NCCLAllreduce::Execute()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/nccl_operations.cc:180
+[1,0]<stderr>:12 0x00000000000d3f3d horovod::common::OperationManager::ExecuteAllreduce()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/operation_manager.cc:46
+[1,0]<stderr>:13 0x00000000000d436c horovod::common::OperationManager::ExecuteOperation()  /tmp/pip-req-build-mvs1f3me/horovod/common/ops/operation_manager.cc:112
+[1,0]<stderr>:14 0x00000000000a7838 horovod::common::(anonymous namespace)::BackgroundThreadLoop()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:297
+[1,0]<stderr>:15 0x00000000000a7838 std::__shared_ptr<CUevent_st*, (__gnu_cxx::_Lock_policy)2>::operator=()  /usr/include/c++/9/bits/shared_ptr_base.h:1265
+[1,0]<stderr>:16 0x00000000000a7838 std::shared_ptr<CUevent_st*>::operator=()  /usr/include/c++/9/bits/shared_ptr.h:335
+[1,0]<stderr>:17 0x00000000000a7838 horovod::common::Event::operator=()  /tmp/pip-req-build-mvs1f3me/horovod/common/common.h:186
+[1,0]<stderr>:18 0x00000000000a7838 horovod::common::Status::operator=()  /tmp/pip-req-build-mvs1f3me/horovod/common/common.h:198
+[1,0]<stderr>:19 0x00000000000a7838 PerformOperation()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:297
+[1,0]<stderr>:20 0x00000000000a7838 RunLoopOnce()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:790
+[1,0]<stderr>:21 0x00000000000a7838 BackgroundThreadLoop()  /tmp/pip-req-build-mvs1f3me/horovod/common/operations.cc:654
+[1,0]<stderr>:22 0x00000000000d6de4 std::error_code::default_error_condition()  ???:0
+[1,0]<stderr>:23 0x0000000000008609 start_thread()  ???:0
+[1,0]<stderr>:24 0x000000000011f133 clone()  ???:0
+[1,0]<stderr>:=================================
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 1 with PID 0 on node mlperf exited on signal 7 (Bus error).
+
+
+======================================
 [1,0]<stderr>:In DALI 1.0 all readers were moved into a dedicated :mod:`~nvidia.dali.fn.readers`
 [1,0]<stderr>:submodule and renamed to follow a common pattern. This is a placeholder operator with identical
 [1,0]<stderr>:functionality to allow for backward compatibility.
