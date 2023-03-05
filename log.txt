@@ -1,3 +1,38 @@
+
+
+
+[root@node001 AI-ML_autorun]# python autorun.py --help
+/usr/local/lib/python3.6/site-packages/paramiko/transport.py:32: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography (40.0) will be the last to support Python 3.6.
+  from cryptography.hazmat.backends import default_backend
+Traceback (most recent call last):
+  File "autorun.py", line 24, in <module>
+    import apps.imagenet.imagenet as img
+  File "/cm/shared/AI-ML_autorun/apps/imagenet/imagenet.py", line 12, in <module>
+    from autorun import args
+  File "/cm/shared/AI-ML_autorun/autorun.py", line 24, in <module>
+    import apps.imagenet.imagenet as img
+AttributeError: module 'apps.imagenet' has no attribute 'imagenet'
+[root@node001 AI-ML_autorun]#
+[root@node001 AI-ML_autorun]#
+[root@node001 AI-ML_autorun]#
+[root@node001 AI-ML_autorun]# ll
+total 68
+drwxrwxrwx  6 root root   109 Mar  5 17:23 apps
+-rwxrwxrwx  1 root root  8288 Mar  3 16:11 autorun.py
+-rwxrwxrwx  1 root root     0 Mar  5 17:23 __init.py__
+-rwxrwxrwx  1 root root 50412 Jan 16 11:56 kubeconfig.rtf
+drwxrwxrwx  3 root root   142 Mar  5 17:24 lib
+drwxrwxrwx  2 root root    44 Mar  5 17:15 __pycache__
+drwxrwxrwx 36 root root  4096 Mar  5 17:14 results
+
+
+from time import sleep
+from lib.remote import *
+import lib.application as app
+import apps.imagenet.imagenet as img
+
+
+====================================
 혹시 내일 오전 9~11시 농구하실분 있으시면 저에게 알려주세요ㅎ 게스트 픽업게임입니다
 
 
