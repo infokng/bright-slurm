@@ -1,4 +1,12 @@
 
+
+* spec.containers[0].resources.requests[gpu]: Invalid value: "gpu": must be a standard resource type or fully qualified
+* spec.containers[0].resources.requests[gpu]: Invalid value: "gpu": must be a standard resource for containers
+* spec.containers[0].resources.requests[memoryInGB]: Invalid value: "memoryInGB": must be a standard resource type or fully qualified
+* spec.containers[0].resources.requests[memoryInGB]: Invalid value: "memoryInGB": must be a standard resource for containers
+
+
+====================================
 mlperf-imagenet-lustre-p5510-n1-gpu-image-pvc   Bound    pvc-bc216128-42d1-4612-8a1f-9ae33327e6f5   1200Gi     RWO            lustre-client   16h
 
 [root@node001 AI-ML_autorun]# python autorun.py --help
