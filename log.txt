@@ -1,5 +1,51 @@
 
+The Pod "imagenet-run" is invalid: spec.containers[0].resources.limits: Required value: Limit must be set for non overcommitable resources
 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: imagenet-run
+  labels:
+    devcloud: autorun
+    app: imagenet-run
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node001
+  containers:
+  - name: imagenet-run
+    image: 192.168.61.4:5000/nvidia_rn50_mx:0.2
+    imagePullPolicy: IfNotPresent
+    securityContext:
+      privileged: true
+    command: ["/bin/sh", "-c"]
+    args:
+        - "./runner -n 2 -b 256 --data-root /data/imagenet/train-val-recordio-passthrough/ILSVRC/Data/CLS-LOC -e 2"
+    volumeMounts:
+    - name: imagenet-volume
+      mountPath: /data/imagenet/train-val-recordio-passthrough
+    - mountPath: /tmp
+      name: imagenet-log
+    resources:
+      requests:
+        memory: 128Gi
+        nvidia.com/gpu: 2
+  build:
+    context: .
+    shm_size: '127gb'
+  volumes:
+  - name: imagenet-volume
+    persistentVolumeClaim:
+      claimName: mlperf-imagenet-lustre-p5510-n1-gpu-image-pvc
+  - name: imagenet-log
+    hostPath:
+      path: "/mnt/"
+  restartPolicy: Never
+  imagePullSecrets:
+  - name: regcred
+
+
+===========================
 * spec.containers[0].resources.requests[gpu]: Invalid value: "gpu": must be a standard resource type or fully qualified
 * spec.containers[0].resources.requests[gpu]: Invalid value: "gpu": must be a standard resource for containers
 * spec.containers[0].resources.requests[memoryInGB]: Invalid value: "memoryInGB": must be a standard resource type or fully qualified
