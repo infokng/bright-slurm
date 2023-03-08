@@ -1,4 +1,8 @@
 
+
+ Warning  FailedScheduling  9s (x2 over 11s)  default-scheduler  0/7 nodes are available: 1 Insufficient nvidia.com/gpu, 1 node(s) had taint {node-role.kubernetes.io/master: true}, that the pod didn't tolerate, 1 node(s) had taint {node.kubernetes.io/unreachable: }, that the pod didn't tolerate, 1 node(s) had taint {role: critical}, that the pod didn't tolerate, 3 node(s) didn't match Pod's node affinity/selector.
+
+=====================
 The Pod "imagenet-run" is invalid: spec.containers[0].resources.limits: Required value: Limit must be set for non overcommitable resources
 
 
