@@ -1,6 +1,322 @@
 
 
+import argparse
+import subprocess
+import os, fnmatch, shutil
+import re
+import parser
+from random import seed
+from random import randint
+from pathlib import Path
+from datetime import datetime
+from paramiko import client
+from distutils.dir_util import copy_tree
+from scp import SCPClient, SCPException
+import json
+from time import sleep
+from lib.remote import *
+import lib.application as app
+import apps.imagenet.image as img
 
+# silent =" 2>/dev/null || true"
+
+# PROJ_DIR = os.path.realpath(os.path.join(__file__, os.pardir))
+# APPS_CONF_DIR = os.path.join(PROJ_DIR, "apps")
+
+# # DevCloud splunk server information
+# DEVCLOUD_SPLUNK_SVR="192.168.61.40"
+# DEVCLOUD_SPLUNK_ID="root"
+# DEVCLOUD_SPLUNK_PW="password"
+
+# seed()
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+
+    def csv_str(str1):
+        return str1.split(',')
+    parser.add_argument('-t','--testname',dest='tname',default='test',help='Testname | e.g. mytest')
+    parser.add_argument('-n','--num',dest='num',default=1,type=int,help='Number of tenants | e.g. 2')
+    # parser.add_argument('-m','--master',dest='m_id',required=True,type=csv_str,help='Server | e.g. kvm-1,kvm-2')
+    parser.add_argument('-s','--servers',dest='s_id',required=True,type=csv_str,help='Server | e.g. kvm-1,kvm-2')
+    parser.add_argument('-c','--clients',dest='c_id',required=True,type=csv_str,help='Clients | e.g. kvm-1,kvm-2')
+    parser.add_argument('-d','--device',dest='d_id',default='sdb,sdb,sdb,sdb',type=csv_str,help='Storage | e.g. sdb,sdb')
+    parser.add_argument('-mt','--mount',dest='mnt',required=False,type=str,help='Dataset Mountpath | e.g. /mnt/lustre/cosmo')
+    parser.add_argument('-g','--gpu',dest='gpu',required=False,help='No. of GPUs')
+    parser.add_argument('-proc','--procs',dest='procs',required=False,help='No. of processes or tasks')
+    parser.add_argument('-th','--threads',dest='th',required=False,help='Number of threads for Pre-processing')
+    parser.add_argument('-ct','--ctrace',dest='ctrace',action='store_true',help='Run Ctrace if flag enabled')
+    parser.add_argument('-nc','--no-copy',dest='nocopy',action='store_true')
+    
+    # TODO currently shared account id/password. it needs to change to multiple account and password
+    parser.add_argument('-u','--user',dest='user',default='root',help='DevClous Autorun server account | e.g. root')
+    parser.add_argument('-p','--password',dest='password',default='password',help='DevCloud Autorun server account | e.g. password')
+
+    args = parser.parse_args()
+    return args
+
+
+def main():
+    # Get working directory(absolute)
+    cwd = os.getcwd()
+
+    # Collect arguments
+    args = parse_args()
+    dev = args.d_id
+    
+    # Init variables
+    # respath = init_test(args.tname, cwd)
+    #respath_1 = mkdir_p(respath,'stage1')
+    #respath_2 = mkdir_p(respath,'stage2')
+    # respath_imagenet = mkdir_p(respath,'stage1')
+    mountpath = args.mnt
+    
+    # applogpath = '/mnt/kafka-log'
+    node = len(args.c_id)
+    clients = " ".join(args.c_id)
+    gpu = args.gpu
+    procs = args.procs
+    th = args.th
+    master = '192.168.61.88'
+    client_data = '192.168.61.90'
+    df = 'Cosmo-Small'
+    
+
+# Cosmoflow application starts here 
+    
+    # Initialize conn in servers
+    lustre_conn = [RemoteConn(svr) for svr in args.s_id]
+    #Initialize conn in clients
+    client_conn = [RemoteConn(svr) for svr in args.c_id]
+    # Initialize conn in master
+    master_conn = RemoteConn(master)
+    client_data_conn = RemoteConn(client_data)
+    
+    # Pre-run cleanup
+    # clients = []
+    # for client in clients_conn: clients.append(Logs(broker, dev, respath))
+    # for client in clients:
+    
+    # Pre-run setup
+    pre_mkdir = app.Application('cosmoflow', clients, mountpath, gpu, procs, node)
+    pre_mkdir.create_dir(client_conn[0])
+    
+    # Start load phase logging
+    loggers = []
+    for broker in brokers: loggers.append(Logs(broker, dev, respath_1))
+    for logger in loggers:
+        print('Initiating system logging - Load Phase...')
+        logger.start_system_logging()
+        if args.ctrace: logger.start_ctrace()
+    
+    client_loggers = []
+    for client in client_conn: client_loggers.append(Logs(client, dev, respath_1))
+    for clog in client_loggers:
+        print('Initiating client logging - Load Phase...')
+        clog.start_client_system_logging()
+        
+    
+    # Start Data-Preprocessing - Stage 1
+    print(f'Loading benchmark.... Load Phase')
+    load_cosmo = app.Application('cosmoflow', clients, mountpath, gpu, procs, node)
+    load_cosmo.cosmo_load_bm(th,df,master_conn)
+    
+    # cosmo_load_bm('cosmoflow', clients, mountpath, gpu, procs, th)
+    
+    # wait for Job status
+    sleep(5)
+    load_cosmo.wait_job(master_conn)
+    
+    sleep(5)
+        
+    # Stop logging - Load Phase
+    print('Stopping system logging - Load Phase...')
+    for logger in loggers:
+        logger.stop_system_logging()
+        if args.ctrace: logger.stop_ctrace()
+    
+    for clog in client_loggers:
+        clog.stop_client_logging()
+        
+
+    # Copy logs - Load phase
+    print(f'Copying all logs to {respath}...Load Phase')
+    for logger in loggers:
+        logger.copy_system_logs(type_load='load')
+        if args.ctrace:
+            logger.get_ctrace_log(type_load='load')
+            logger.clean_ctrace_log()
+            
+    for clog in client_loggers:
+        clog.copy_client_logs(type_load='load')
+
+
+    # Start Model Training phase logging
+    loggers = []
+    for broker in brokers: loggers.append(Logs(broker, dev, respath_2))
+    for logger in loggers:
+        print('Initiating system logging - Model Training Phase...')
+        logger.start_system_logging()
+        if args.ctrace: logger.start_ctrace()
+    
+    client_loggers = []
+    for client in client_conn: client_loggers.append(Logs(client, dev, respath_2))
+    for clog in client_loggers:
+        print('Initiating client logging - Model Training Phase...')
+        clog.start_client_system_logging()
+    
+    # Start Model Training - Stage 2
+    print(f'Loading benchmark.... Model Training Phase')
+    run_cosmo = app.Application('cosmoflow', clients, mountpath, gpu, procs, node)
+    run_cosmo.cosmo_train_bm(th,df,master_conn)
+    
+    # cosmo_load_bm('cosmoflow', clients, mountpath, gpu, procs, th)
+    
+    # wait for Job status
+    sleep(5)
+    run_cosmo.wait_job(master_conn)
+    
+    sleep(5)
+        
+    # Stop logging - Load Phase
+    print('Stopping system logging - Training Phase...')
+    for logger in loggers:
+        logger.stop_system_logging()
+        if args.ctrace: logger.stop_ctrace()
+    
+    for clog in client_loggers:
+        clog.stop_client_logging()
+        
+
+    # Copy logs - Load phase
+    print(f'Copying all logs to {respath}...Training Phase')
+    for logger in loggers:
+        logger.copy_system_logs(type_load='train')
+        if args.ctrace:
+            logger.get_ctrace_log(type_load='train')
+            logger.clean_ctrace_log()
+            
+    for clog in client_loggers:
+        clog.copy_client_logs(type_load='train')
+    
+    run_cosmo.copy_slurm_job_files(master_conn, dev, respath_2)
+
+
+
+# Imagenet Application Starts here
+    
+    # Init variables
+    respath = init_test(args.tname, cwd, f'{cwd}/apps/imagenet/yaml')
+    respath_imagenet = mkdir_p(respath,'stage1')
+    respath_imagenet_train = mkdir_p(respath,'stage2')
+    print("respath :", respath)
+    yamlpath = os.path.join(respath, 'yaml')
+    ns = f'{args.tname}-imagenet'
+
+    
+    # Imagenet Pre-run setup
+    pre_imagenet_mkdir = img.Imagenet('imagenet', clients, ns, yamlpath, args, master_conn)
+    #pre_imagenet_mkdir.imagenet_load_bm(master_conn)
+    pre_imagenet_mkdir.copy_data_pv(args, master_conn, client_data_conn)
+
+
+ # Start load phase logging
+    loggers = []
+    for lustre in lustre_conn: loggers.append(Logs(lustre, dev, respath_imagenet))
+    for logger in loggers:
+        print('Initiating system logging - Load Phase...')
+        logger.start_system_logging()
+        if args.ctrace: logger.start_ctrace()
+
+    client_loggers = []
+    for client in client_conn: client_loggers.append(Logs(client, dev, respath_imagenet))
+    for clog in client_loggers:
+        print('Initiating client logging - Load Phase...')
+        clog.start_client_system_logging()
+
+# Start LOAD Workload
+    # Start Imagenet Pre-Processing - Stage 1
+    print(f'Loading benchmark.... ImageNet Load Phase')
+    pre_imagenet_mkdir.start_load('imagenet', master_conn)
+    #pre_imagenet_mkdir.start_run(master_conn)
+    print(f'Finishing benchmark.... ImageNet Load Phase Finished')
+
+# Stop logging - Load Phase
+    print('Stopping system logging - Load Phase...')
+    for logger in loggers:
+        logger.stop_system_logging()
+        if args.ctrace: logger.stop_ctrace()
+
+    for clog in client_loggers:
+        clog.stop_client_logging()
+
+
+# Copy logs - Load phase
+    print(f'Copying all logs to {respath_imagenet}...Load Phase')
+    for logger in loggers:
+        logger.copy_system_logs(type_load='load')
+        if args.ctrace:
+            logger.get_ctrace_log(type_load='load')
+            logger.clean_ctrace_log()
+
+    for clog in client_loggers:
+        clog.copy_client_logs(type_load='load')
+
+
+## Imagenet Model Training 
+
+
+ # Start Run phase logging
+    loggers = []
+    for lustre in lustre_conn: loggers.append(Logs(lustre, dev, respath_imagenet_train))
+    for logger in loggers:
+        print('Initiating system logging - Run Phase...')
+        logger.start_system_logging()
+        if args.ctrace: logger.start_ctrace()
+
+    client_loggers = []
+    for client in client_conn: client_loggers.append(Logs(client, dev, respath_imagenet_train))
+    for clog in client_loggers:
+        print('Initiating client logging - Run Phase...')
+        clog.start_client_system_logging()
+
+
+# Start Model Training Workload
+    # Start Imagenet Model Training - Stage 2
+    print(f'Running benchmark.... ImageNet Model Run Phase')
+    pre_imagenet_mkdir.start_run('imagenet', master_conn)
+    print(f'Finishing benchmark.... ImageNet Run Phase Finished')
+
+# Stop logging - Run Phase
+    print('Stopping system logging - Run Phase...')
+    for logger in loggers:
+        logger.stop_system_logging()
+        if args.ctrace: logger.stop_ctrace()
+
+    for clog in client_loggers:
+        clog.stop_client_logging()
+
+
+# Copy logs - Run phase
+    print(f'Copying all logs to {respath_imagenet_train}...Run Phase')
+    for logger in loggers:
+        logger.copy_system_logs(type_load='train')
+        if args.ctrace:
+            logger.get_ctrace_log(type_load='train')
+            logger.clean_ctrace_log()
+
+    for clog in client_loggers:
+        clog.copy_client_logs(type_load='train')
+
+    
+
+
+if __name__=='__main__':
+    main()
+
+
+
+===============================================================
 tolerations:
 - key: "node-role.kubernetes.io/master"
   operator: "Exists"
