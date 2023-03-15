@@ -1,5 +1,33 @@
 
+ def wait_job(self, master=None):
+        def check_status():
+            res = master.send_command(f'kubectl get pods --field-selector=status.phase=Running')
+            if "imagenet" in str(res):
+                print("Job Running")
+                return False
+            else:
+                print(res)
 
+        while check_status() == False:
+            sleep(5)
+            print('Load Finished')
+
+def wait_job(self, master=None):
+        def check_status():
+            res = master.send_command(f'sacct | grep -E "{self.job_id}|{self.job_id_2}"')
+            if "RUNNING" in str(res):
+                print("Slurm Job Running ")
+                return False
+            elif "COMPLETED" in str(res):
+                print("Completed Job")
+            else:
+                print(res)
+        while check_status() == False:
+            sleep(10)
+
+
+
+================================================
 [1,3]<stderr>:terminate called after throwing an instance of 'dmlc::Error'
 [1,3]<stderr>:  what():  [12:17:55] ../src/engine/./threaded_engine.h:397: [12:17:55] ../src/engine/threaded_engine.cc:688: Check failed: e == cudaSuccess: CUDA: uncorrectable ECC error encountered
 
