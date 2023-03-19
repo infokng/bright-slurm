@@ -1,4 +1,19 @@
 
+Tokenization is the process of converting textual data into a numerical format that can be processed by machine learning algorithms. In the case of GPT-2 model training on Pile dataset, tokenization is an important step in preprocessing the data.
+
+Hugging Face's Transformers library provides a tokenizer specifically designed for GPT-2 called GPT2Tokenizer. This tokenizer uses Byte-Pair Encoding (BPE) to encode text into a fixed-length vector representation, which is compatible with the GPT-2 model.
+
+The tokenization process involves the following steps:
+
+Encoding: The raw text is first encoded using the tokenizer's encode() method. This method takes a string input and returns a list of integer token IDs representing the encoded text.
+
+Padding: Since the GPT-2 model requires fixed-length input sequences, the encoded text may need to be padded to ensure that all sequences have the same length. This is accomplished using the pad() method of the tokenizer, which takes a list of encoded sequences and pads them to a specified length.
+
+Batching: To efficiently train the model, the padded sequences are typically organized into batches of a fixed size. This is done using TensorFlow's tf.data API, which provides a simple and efficient way to load and preprocess large datasets.
+
+Overall, the tokenization process converts the raw text into a numerical format that can be easily processed by the GPT-2 model. It is an essential step in preparing the data for training and is a common preprocessing step in many natural language processing tasks.
+
+=============
 from datasets import load_dataset, DownloadConfig
 
 
