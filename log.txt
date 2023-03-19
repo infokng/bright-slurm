@@ -1,4 +1,22 @@
 
+from datasets import load_dataset, DownloadConfig
+
+
+#load the Pile dataset from Hugging Face Datasets
+#dataset = load_dataset('the_pile')
+dataset = load_dataset('the_pile', split='train', cache_dir='F:\datasets', download_config=DownloadConfig(resume_download=True))
+
+
+# save each file in the dataset to disk
+for i, example in enumerate(dataset['train']):
+    filename = f'pile_file_{i}.json'
+    with open(filename, 'w') as f:
+        f.write(str(example))
+
+print("Finished saving Pile dataset files to disk.")
+
+
+=======
 Introduction:
 
 The_Pile is a large and diverse English language dataset released by EleutherAI, a non-profit organization focused on building open-source and decentralized AI. It contains around 800 GB of text data, including articles, books, and web pages. The dataset is unique in its size and diversity, making it an ideal choice for training large-scale language models such as GPT-2. In this article, we will discuss how to download and preprocess the Pile dataset, and train a GPT-2 model using TensorFlow.
