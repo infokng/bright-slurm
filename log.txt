@@ -1,4 +1,20 @@
 
+
+
+
+
+The tokenizer function is called with the following arguments:
+
+text: The raw text to be tokenized.
+max_length: The maximum length of the tokenized sequence.
+padding: Whether to pad the sequence to the specified max_length.
+truncation: Whether to truncate the sequence to the specified max_length if it exceeds the maximum length.
+return_tensors: The format of the output tensor.
+The tokenizer function returns a dictionary containing the input IDs and attention mask, which are then converted into a TFRecord
+
+
+
+
 Tokenization is the process of converting textual data into a numerical format that can be processed by machine learning algorithms. In the case of GPT-2 model training on Pile dataset, tokenization is an important step in preprocessing the data.
 
 Hugging Face's Transformers library provides a tokenizer specifically designed for GPT-2 called GPT2Tokenizer. This tokenizer uses Byte-Pair Encoding (BPE) to encode text into a fixed-length vector representation, which is compatible with the GPT-2 model.
