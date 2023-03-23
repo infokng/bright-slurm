@@ -1,4 +1,23 @@
 
+import matplotlib.pyplot as plt
+
+# Latency values
+latency = [57.438256, 85.307924, 101.303716, 171.993753, 350.48246]
+
+# Bandwidth values
+bw = [0.531309, 0.715693, 1.204991, 1.419458, 1.393158]
+
+# Plotting the graph
+plt.plot(bw, latency, marker='o')
+
+# Adding labels to the graph
+plt.xlabel('BW GB/s')
+plt.ylabel('Latency')
+plt.title('BW/Latency Relation Graph')
+
+# Displaying the graph
+plt.show()
+
 
 ctrace install
 - cp folder
