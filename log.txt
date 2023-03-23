@@ -1,5 +1,10 @@
 
 
+ctrace install
+- cp folder
+- yum install ./kernel-*c1*rpm
+- yum install ctrace-cli-3.4.el7.x86_64.rpm
+
 #!/bin/bash
 
 NODE=mlperf1
