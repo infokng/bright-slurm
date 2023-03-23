@@ -1,7 +1,106 @@
 
 
+#!/bin/bash
+
+NODE=mlperf1
+DATE=$(date +"%y%m%d_%H:%M")
+TESTNAME=mlperf_$1	# pm9a3-4tb / intel-4tb / ...
+TESTDIR=$2
+TARGET=nvme4n1
+#TARGET=$3	# nvme4n1 
+declare -a SERVERS=('mlperf1')
+LOGFILE=${TESTDIR}/timelog.log
 
 
+begin=`date +%s`
+finish=`date +%s`
+
+#mkdir -p ${TESTDIR}/{stage1,stage2,stage3}
+
+CHECK_START() {
+        begin=`date +%s`
+        #local TARGET=$1
+        #local PHASE=$1
+	#echo "$TARGET 123"
+        echo -e "\tWaiting for start... (Start time: `date "+%m-%d %H:%M"`)" | tee -a $LOGFILE
+        for server in "${SERVERS[@]}"; do
+            echo "Starting Stats Collection on $server"
+            echo -e "\tCapacity of ${TARGET}_${server}" | tee -a $LOGFILE
+            ssh -f root@$server "df -h | grep $TARGET" | tee -a $LOGFILE
+            ssh -f root@$server killall iostat vmstat 2>/dev/null || true
+            ssh -f root@$server dstat.log 2>/dev/null || true
+            ssh -f root@$server "iostat -m 1 | awk '/${TARGET}/; { fflush(stdout) }' > iostat.log"
+            ssh -f root@$server "dstat 1 > dstat.log"
+            ssh -f root@$server "vmstat 1 > vmstat.log" 
+	done
+        #RUN_CTRACE	
+        echo "Collecting Stats ..."
+}
+
+CHECK_FINISH(){
+	finish=`date +%s`
+	#local TESTNAME=$1
+	echo -e "\tCompleted... (End time: `date "+%m-%d %H:%M"`)" | tee -a $LOGFILE
+	echo -e "\tElapsed Time ($((finish-begin))s)" | tee -a $LOGFILE
+        for server in "${SERVERS[@]}"; do
+            echo "Finishing Stats Collection on $server"
+            scp root@$server:~/dstat.log ./${TESTDIR}/${server}-${TESTNAME}-dstat.log
+	    scp root@$server:~/vmstat.log ./${TESTDIR}/${server}-${TESTNAME}-vmstat.log
+            scp root@$server:~/iostat.log ./${TESTDIR}/${server}-${TESTNAME}-iostat.log
+	    ssh -f root@$server killall iostat vmstat 2>/dev/null || true
+	    ssh -f root@$server rm iostat.log dstat.log vmstat.log 2>/dev/null || true
+	STOP_CTRACE
+	echo " Test Finished"
+        done
+}
+
+waitfunc() {
+        CHECK=$(docker ps | grep Up)
+        if [[ $CHECK == "" ]]; then
+                return 0
+        else
+                echo $CHECK
+		return 1
+        fi
+}
+
+RUN_CTRACE(){
+    #local TARGET=$1
+    ssh root@$NODE killall ctrace 2>/dev/null || true
+    ssh root@$NODE rm -rf ~/${TESTNAME}-ctrace*
+    ssh -f root@$NODE ctrace -d /dev/$TARGET -o /home/$TESTNAME-ctrace
+    echo " Ctrace started ......"
+}
+
+STOP_CTRACE(){
+    ssh root@$NODE killall ctrace
+    echo "Stopping Ctrace and Waiting for results collection ....."
+    sleep 10
+    scp -r root@$NODE:~/${TESTNAME}-ctrace*/data/data.* ./${TESTDIR}/
+}
+
+DROP_CACHE() {
+        echo -e "\tDropping caches..." | tee -a $LOGFILE
+        ssh root@${NODE} 'echo 3 > /proc/sys/vm/drop_caches'
+        sleep 3
+}
+#============== Start here ================######
+
+DROP_CACHE
+#RUN_CTRACE
+#STOP_CTRACE 
+CHECK_START
+RUN_CTRACE
+#while true; do
+#        waitfunc && break
+#done
+
+
+#CHECK_FINISH
+
+
+
+==================================================
 
 The tokenizer function is called with the following arguments:
 
